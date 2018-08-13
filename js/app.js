@@ -2,7 +2,7 @@ $(function() {
   $(document).ready(function() {
     $('select').formSelect();
     $('.fixed-action-btn').floatingActionButton();
- $('.modal').modal();
+    $('.modal').modal();
     var elems = document.querySelectorAll('.tap-target');
     var instances = M.TapTarget.init(elems, {});
 
@@ -98,5 +98,19 @@ $(function() {
         }
       });
     })
+
+
+    //Geolocation Detecting
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      alert("Geo location is not supported by this browser.");
+    }
+
+    function showPosition(position) {
+      $("#location").trigger('focus');
+      $("#location").val(position.coords.latitude + "," + position.coords.longitude);
+      $("#amount").trigger('focus');
+    }
   });
 });
