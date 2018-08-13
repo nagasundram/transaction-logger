@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="./css/jquery.flipster.min.css">
+  <link rel="stylesheet" href="./css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="css/material-icons.css">
+  <!--Import your style sheets here-->
+  <link rel="stylesheet" href="./css/styles.css">
+  <meta charset="UTF-8">
+  <title>Personal Transaction Logger</title>
+</head>
+
+<body>
+  <div class="card blue-grey darken-4 z-depth-5">
+    <form class="row" id="transForm">
+      <div class="col s12">
+        <div class="card-content white-text">
+          <span class="card-title">
+            Transaction Logger
+            <span class="winControls right">
+              <a class="btn-floating btn-small blue-grey darken-3" id="minBtn">&nbsp;-&nbsp;</a>
+              <a class="btn-floating btn-small blue-grey darken-3" id="closeBtn">&nbsp;X&nbsp;</a>
+            </span>
+          </span>
+          <!-- Amount, Source -->
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="amount" type="text" required autocomplete="off">
+              <label for="amount">Amount</label>
+            </div>
+            <div class="input-field col s6">
+              <select id="source" name="source" required class="validate">
+                <option value="">Select Source</option>
+                <option data-icon="images/rupee.png" value="Cash">Cash</option>
+                <option data-icon="images/icici.png" value="ICICI">ICICI</option>
+                <option data-icon="images/hdfc.png" value="HDFC">HDFC</option>
+                <option data-icon="images/icici.png" value="ICICI Credit">ICICI Credit</option>
+                <option data-icon="images/hdfc.png" value="HDFC Credit">HDFC Credit</option>
+                <option data-icon="images/zeta.png" value="Zeta">Zeta</option>
+                <option data-icon="images/paytm.jpg" value="Paytm">Paytm</option>
+              </select>
+              <label for="source">Source</label>
+            </div>
+          </div>
+          <!-- Amount, Source -->
+          <!-- Category, sub -->
+          <div class="row">
+            <div class="input-field col s6">
+              <select id="category" required>
+                <option value="">Select Category</option>
+                <option value="Food">Food</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Travel">Travel</option>
+                <option value="Payments">Payments</option>
+                <option value="Misc.">Others</option>
+              </select>
+              <label>Category</label>
+            </div>
+            <div class="input-field col s6" id="subCatCon">
+              <select id="subCategory">
+                <option value="">Select Sub-Category</option>
+              </select>
+              <label>Sub Category</label>
+            </div>
+            <div class="input-field col s6" id="miscSubCatCon">
+              <input id="miscSubCategory" type="text" autocomplete="off">
+              <label for="miscSubCategory">Sub-Category</label>
+            </div>
+          </div>
+          <!-- Category, sub -->
+          <!-- comments -->
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea class="materialize-textarea" id="comments" required></textarea>
+              <label for="textarea1">Comments</label>
+            </div>
+          </div>
+          <!-- comments -->
+          <!-- location -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="location" type="text" autocomplete="off" required>
+              <label for="location">Location</label>
+            </div>
+          </div>
+          <!-- location -->
+          <div class="row">
+            <button class="btn waves-effect waves-teal blue-grey darken-3" type="submit">Log
+              <i class="material-icons right">add</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="progress" id="loading">
+      <div class="indeterminate"></div>
+    </div>
+  </div>
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large teal pulse" id='sb'>
+      <i class="large material-icons">fingerprint</i>
+    </a>
+  </div>
+  <!-- Tap Target Structure -->
+  <div class="tap-target teal lighten-3" data-target="sb" id="tap-target">
+    <div class="tap-target-content" id="showBalDetail">
+    </div>
+  </div>
+  <script>
+  var jqr = require('jquery');
+  </script>
+  <script src="./js/libs/hammer.min.js" onload="window.Hammer = module.exports;"></script>
+  <script src="./js/libs/jquery-3.3.1.min.js"></script>
+  <script src="./js/libs/materialize.min.js"></script>
+  <script src="./js/configs.js"></script>
+  <script src="./js/app.js"></script>
+  <script>
+  (function() {
+    const { BrowserWindow } = require('electron').remote
+
+    function init() {
+      document.getElementById("minBtn").addEventListener("click", (e) => {
+        var window = BrowserWindow.getFocusedWindow();
+        window.minimize();
+      });
+      document.getElementById("closeBtn").addEventListener("click", (e) => {
+        var window = BrowserWindow.getFocusedWindow();
+        window.close();
+      });
+    };
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        init();
+      }
+    };
+  })();
+  </script>
+</body>
+
+</html>

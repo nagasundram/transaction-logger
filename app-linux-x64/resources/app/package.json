@@ -1,0 +1,20 @@
+{
+  "name": "Transaction_Logger",
+  "version": "1.0.0",
+  "description": "To track incomes and expenses(personal use)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Electron",
+    "Matrial",
+    "Transaction"
+  ],
+  "author": "Nagasundaram",
+  "license": "Personal",
+  "devDependencies": {
+    "electron": "~1.7.8"
+  }
+}
