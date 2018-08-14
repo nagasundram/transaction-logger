@@ -11,6 +11,8 @@ $(function() {
 
     $('#category').on('change', function() {
       var subCat = $("#subCategory");
+      $("#subCategory option").remove();
+      subCat.append(new Option('Select Sub-Category', ''));
       subCat.length = 1;
       if (this.selectedIndex < 1) return;
       if (this.value == 'Misc.') {
