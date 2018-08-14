@@ -90,6 +90,8 @@ textarea {
 .chip {
   background-color: teal;
   color: white;
+  cursor: pointer;
+  min-width: 100px;
 }
 
 .winControls {

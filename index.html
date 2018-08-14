@@ -9,10 +9,17 @@
   <link rel="stylesheet" href="./css/styles.css">
   <meta charset="UTF-8">
   <title>Personal Transaction Logger</title>
+  <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+</script>
 </head>
 
 <body>
-  <div class="card blue-grey darken-4 z-depth-5">
+  <div class="card blue-grey darken-4 z-depth-5" id="form_card">
     <form class="row" id="transForm">
       <div class="col s12">
         <div class="card-content white-text">
