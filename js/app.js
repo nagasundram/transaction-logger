@@ -68,25 +68,25 @@ $(function() {
               value = obj[1];
             switch (key) {
               case 'Cash':
-                htmlResult += "<div class='chip'><img src='images/rupee.png' alt=" + key + "/> " + value + "</div><br/>";
+                htmlResult += "<div onclick=getChartData('" + key.replace(' ', '|') + "'); class='chip'><img src='images/rupee.png' alt=" + key + "/> " + value + "</div><br/>";
                 break;
               case 'ICICI':
-                htmlResult += "<div class='chip'><img src='images/icici.png' alt=" + key + "/> " + value + "</div><br/>";
+                htmlResult += "<div onclick=getChartData('" + key.replace(' ', '|') + "'); class='chip'><img src='images/icici.png' alt=" + key + "/> " + value + "</div><br/>";
                 break;
               case 'HDFC':
-                htmlResult += "<div class='chip'><img src='images/hdfc.png' alt=" + key + "/> " + value + "</div><br/>";
+                htmlResult += "<div onclick=getChartData('" + key.replace(' ', '|') + "'); class='chip'><img src='images/hdfc.png' alt=" + key + "/> " + value + "</div><br/>";
                 break;
               case 'Zeta':
-                htmlResult += "<div class='chip'><img src='images/zeta.png' alt=" + key + "/> " + value + "</div><br/>";
+                htmlResult += "<div onclick=getChartData('" + key.replace(' ', '|') + "'); class='chip'><img src='images/zeta.png' alt=" + key + "/> " + value + "</div><br/>";
                 break;
-              case 'paytm':
-                htmlResult += "<div class='chip'><img src='images/paytm.jpg' alt=" + key + "/> " + value + "</div><br/>";
+              case 'Paytm':
+                htmlResult += "<div onclick=getChartData('" + key.replace(' ', '|') + "'); class='chip'><img src='images/paytm.jpg' alt=" + key + "/> " + value + "</div><br/>";
                 break;
               case 'ICICI Credit':
-                htmlResult += "<div class='chip red'><img src='images/icici.png' alt=" + key + "/> " + value + "</div><br/>";
+                htmlResult += "<div onclick=getChartData('" + key.replace(' ', '|') + "'); class='chip red'><img src='images/icici.png' alt=" + key + "/> " + value + "</div><br/>";
                 break;
               case 'HDFC Credit':
-                htmlResult += "<div class='chip red'><img src='images/hdfc.png' alt=" + key + "/> " + value + "</div><br/>";
+                htmlResult += "<div onclick=getChartData('" + key.replace(' ', '|') + "'); class='chip red'><img src='images/hdfc.png' alt=" + key + "/> " + value + "</div><br/>";
                 break;
             }
           });
@@ -102,15 +102,69 @@ $(function() {
 
     //Geolocation Detecting
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
+      navigator.geolocation.getCurrentPosition(setPosition);
     } else {
       alert("Geo location is not supported by this browser.");
     }
 
-    function showPosition(position) {
+    function setPosition(position) {
       $("#location").trigger('focus');
       $("#location").val(position.coords.latitude + "," + position.coords.longitude);
       $("#amount").trigger('focus');
     }
   });
 });
+
+//Google Api request for get chart data
+function getChartData(key) {
+  $("#loading").show();
+  key = key.replace('|', ' ');
+  $.ajax({
+    url: CHART_URL + "?cat=" + key,
+    type: 'GET',
+    success: function(result) {
+      google.charts.setOnLoadCallback(drawChart(result, key));
+    }
+  });
+}
+//Google Charts
+function drawChart(result, cat) {
+  var rawData = result.expenses,
+    newArr = []
+  rawData.forEach(function(element) {
+    var key = Object.keys(element)[0],
+      value = Object.values(element)[0];
+
+    if (newArr[key] == undefined)
+      newArr[key] = 0;
+    newArr[key] += value;
+  });
+  var rows = []
+  for (var i in newArr) {
+    rows.push([i, newArr[i]])
+  }
+  // Create the data table.
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Topping');
+  data.addColumn('number', 'Slices');
+  data.addRows(rows);
+
+  // Set chart options
+  var options = {
+    'title': cat + ' Total Expense: ₹' + result.totalExpense,
+    'width': 400,
+    'height': 300,
+    'backgroundColor': { fill: 'transparent' },
+    'opacity': 0,
+    'is3D': true,
+    'legend': 'left',
+    'sliceVisibilityThreshold': 0
+  };
+
+  var elem = $("#tap-target"),
+    instance = M.TapTarget.getInstance(elem);
+  instance.open();
+  $("#loading").hide();
+  var chart = new google.visualization.PieChart(document.getElementById('showBalDetail'));
+  chart.draw(data, options);
+}
