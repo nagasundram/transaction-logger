@@ -49,7 +49,6 @@ function getMap() {
       var expenses = result.expenses,
         locations = [];
       expenses.forEach(function(expense, index) {
-        console.log(expense)
         var date = new Date(expense[0]).toDateString() + ' ' + new Date(expense[0]).toLocaleTimeString()
         locations.push(['<div>' + date + '</div><hr><div>' + expense[1] + '<span class="new badge" style="background: ' + MARKER_COLORS[expense[3]] + '" data-badge-caption="₹ ' + expense[2] + '">' + expense[3] + ' </span>', expense[6].split(',')[0], expense[6].split(',')[1], index + 1])
       })
