@@ -3,6 +3,7 @@ $(function() {
     $('select').formSelect();
     $('.fixed-action-btn').floatingActionButton();
     $('.modal').modal();
+    $('#mapCloseBtn').hide();
     var elems = document.querySelectorAll('.tap-target');
     var instances = M.TapTarget.init(elems, {});
 
