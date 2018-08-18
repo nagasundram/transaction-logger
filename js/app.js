@@ -100,20 +100,6 @@ $(function() {
         }
       });
     })
-
-
-    //Geolocation Detecting
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(setPosition);
-    } else {
-      alert("Geo location is not supported by this browser.");
-    }
-
-    function setPosition(position) {
-      $("#location").trigger('focus');
-      $("#location").val(position.coords.latitude + "," + position.coords.longitude);
-      $("#amount").trigger('focus');
-    }
   });
 });
 
