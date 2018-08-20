@@ -1,13 +1,15 @@
 $(function() {
   $(document).ready(function() {
-    $('#addTransaction').hide();
-    $('#mapClose').hide();
-
+    init();
+    function init() {
+      $("#loading").show();
+      $("form_card").hide();
+      getMap();
+    }
     $('#addTransaction').on('click', function(e) {
       $('#addTransaction').hide();
       $('#expensesMap').show();
-      $("#form_card").show();
-      $('#mapClose').hide();
+      $("#form_card").show().removeClass('hide');
       $("#map").hide();
     })
 
@@ -16,10 +18,6 @@ $(function() {
       getMap();
     })
 
-    $('#mapCloseBtn').on('click', function(e) {
-      $('#map, #mapClose, #addTransaction').hide();
-      $("#expensesMap, #form_card").show();
-    })
     //Geolocation Detecting
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(setPosition);
@@ -80,7 +78,7 @@ function getMap() {
               scale: 5,
               strokeColor: MARKER_COLORS[expenses[i][3]],
               fillOpacity: 0.5,
-              anchor: new google.maps.Point(0,0),
+              anchor: new google.maps.Point(0, 0),
               fillColor: MARKER_COLORS[expenses[i][3]],
               strokeWeight: 1,
               strokeOpacity: 0.8,
