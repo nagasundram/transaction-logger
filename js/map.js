@@ -1,13 +1,15 @@
 $(function() {
   $(document).ready(function() {
-    $('#addTransaction').hide();
-    $('#mapClose').hide();
-
+    init();
+    function init() {
+      $("#loading").show();
+      $("form_card").hide();
+      getMap();
+    }
     $('#addTransaction').on('click', function(e) {
       $('#addTransaction').hide();
       $('#expensesMap').show();
-      $("#form_card").show();
-      $('#mapClose').hide();
+      $("#form_card").show().removeClass('hide');
       $("#map").hide();
     })
 
@@ -16,10 +18,6 @@ $(function() {
       getMap();
     })
 
-    $('#mapCloseBtn').on('click', function(e) {
-      $('#map, #mapClose, #addTransaction').hide();
-      $("#expensesMap, #form_card").show();
-    })
     //Geolocation Detecting
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(setPosition);
@@ -49,8 +47,9 @@ function getMap() {
       var expenses = result.expenses,
         locations = [];
       expenses.forEach(function(expense, index) {
-        var date = new Date(expense[0]).toDateString() + ' ' + new Date(expense[0]).toLocaleTimeString()
-        locations.push(['<div>' + date + '</div><hr><div>' + expense[1] + '<span class="new badge" style="background: ' + MARKER_COLORS[expense[3]] + '" data-badge-caption="₹ ' + expense[2] + '">' + expense[3] + ' </span>', expense[6].split(',')[0], expense[6].split(',')[1], index + 1])
+        var date = new Date(expense[0]).toDateString() + ' ' + new Date(expense[0]).toLocaleTimeString(),
+          bill = expense[8].length > 0 ? '<br><div><a target="_blank" href="' + expense[8] + '"><i class="tiny material-icons">receipt</i></a></div>' : '';
+        locations.push(['<div>' + date + '</div><hr><div>' + expense[1] + '<span class="new badge" style="background: ' + MARKER_COLORS[expense[3]] + '" data-badge-caption="₹ ' + expense[2] + '">' + expense[3] + ' </span></div><br><div>' + expense[5] + '</div>' + bill, expense[6].split(',')[0], expense[6].split(',')[1], expenses.length - index])
       })
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 18,
@@ -67,9 +66,10 @@ function getMap() {
       });
       var infowindow = new google.maps.InfoWindow();
 
-      var marker, i;
+      var marker, i, scale;
       window.setTimeout(function() {
         for (i = 0; i < locations.length; i++) {
+          scale = i == 0 ? 10 : 5;
           marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
             map: map,
@@ -77,10 +77,10 @@ function getMap() {
             zIndex: locations[i][3],
             icon: {
               path: google.maps.SymbolPath.CIRCLE,
-              scale: 5,
+              scale: scale,
               strokeColor: MARKER_COLORS[expenses[i][3]],
               fillOpacity: 0.5,
-              anchor: new google.maps.Point(0,0),
+              anchor: new google.maps.Point(0, 0),
               fillColor: MARKER_COLORS[expenses[i][3]],
               strokeWeight: 1,
               strokeOpacity: 0.8,
