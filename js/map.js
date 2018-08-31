@@ -1,9 +1,10 @@
 $(function() {
   $(document).ready(function() {
     init();
+
     function init() {
       $("#loading").show();
-      $("form_card").hide();
+      $("#form_card").hide();
       getMap();
     }
     $('#addTransaction').on('click', function(e) {
@@ -89,6 +90,12 @@ function getMap() {
           });
           $("#mapClose").show();
           google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+            return function() {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               infowindow.setContent(locations[i][0]);
               infowindow.open(map, marker);
