@@ -7,6 +7,12 @@ $(function() {
       getMap();
     }
     $('#addTransaction').on('click', function(e) {
+      //Geolocation Detecting
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(setPosition);
+      } else {
+        alert("Geo location is not supported by this browser.");
+      }
       $('#addTransaction').hide();
       $('#expensesMap').show();
       $("#form_card").show().removeClass('hide');
@@ -17,13 +23,6 @@ $(function() {
       $("#loading").show();
       getMap();
     })
-
-    //Geolocation Detecting
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(setPosition);
-    } else {
-      alert("Geo location is not supported by this browser.");
-    }
 
     function setPosition(position) {
       $("#location").trigger('focus');
