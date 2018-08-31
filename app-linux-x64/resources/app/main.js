@@ -12,7 +12,7 @@ let mainWindow;
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-      width: 410,
+      width: 1200,
       icon: path.join(__dirname, 'icon.png'),
       frame: false,
       resizable: false
