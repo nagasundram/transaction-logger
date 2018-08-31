@@ -1,12 +1,19 @@
 $(function() {
   $(document).ready(function() {
     init();
+
     function init() {
       $("#loading").show();
-      $("form_card").hide();
+      $("#form_card").hide();
       getMap();
     }
     $('#addTransaction').on('click', function(e) {
+      //Geolocation Detecting
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(setPosition);
+      } else {
+        alert("Geo location is not supported by this browser.");
+      }
       $('#addTransaction').hide();
       $('#expensesMap').show();
       $("#form_card").show().removeClass('hide');
@@ -17,13 +24,6 @@ $(function() {
       $("#loading").show();
       getMap();
     })
-
-    //Geolocation Detecting
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(setPosition);
-    } else {
-      alert("Geo location is not supported by this browser.");
-    }
 
     function setPosition(position) {
       $("#location").trigger('focus');
@@ -90,6 +90,12 @@ function getMap() {
           });
           $("#mapClose").show();
           google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+            return function() {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               infowindow.setContent(locations[i][0]);
               infowindow.open(map, marker);

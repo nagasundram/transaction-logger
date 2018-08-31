@@ -1,6 +1,6 @@
 var CATEGORIES = {
     "Food": { "Tea/Coffee": "Tea/Coffee", "Street Food": "Street Food", "Restaurants": "Restaurants", "Snacks": "Snacks" },
-    "Shopping": { "Groceries": "Groceries", "Dress": "Dress", "Household": "Household" },
+    "Shopping": { "Groceries": "Groceries", "Cosmetics": "Cosmetics", "Medicine": "Medicine", "Dress": "Dress", "Household": "Household" },
     "Travel": { "Bus": "Bus", "Auto": "Auto", "Cab": "Cab", "Train": "Train", "Fuel": "Fuel" },
     "Entertainment": {"Movie": "Movie"},
     "Payments": {
@@ -16,6 +16,13 @@ var CATEGORIES = {
       "Maintenance / Water": "Maintenance / Water",
       "Gas": "Gas",
       "iWish": "iWish"
+    },
+    "Transactions": {
+      "Cash Withdraw": "Cash Withdraw",
+      "To ICICI": "To ICICI",
+      "To HDFC": "To HDFC",
+      "To Paytm": "To Paytm",
+      "WHC": "WHC"
     }
   },
   WRITE_URL = "https://script.google.com/macros/s/AKfycbzp29Qzo_oLjAgi2UnhkRDl798lXFiU99Jy-aqXIuuE8NF0Ejlq/exec?row=",
