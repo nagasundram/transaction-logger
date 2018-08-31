@@ -6,14 +6,13 @@
   "scripts": {
     "start": "electron ."
   },
-  "repository": "",
+  "repository": "https://github.com/nagasundram/transaction-logger.git",
   "keywords": [
     "Electron",
     "Matrial",
     "Transaction"
   ],
   "author": "Nagasundaram",
-  "license": "Personal",
   "devDependencies": {
     "electron": "~1.7.8"
   }
