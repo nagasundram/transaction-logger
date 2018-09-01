@@ -37,6 +37,11 @@ $(function() {
         success: function(result) {
           $("#loading").hide();
           $("#transForm").trigger("reset");
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setPosition);
+          } else {
+            alert("Geo location is not supported by this browser.");
+          }
           M.toast({ html: 'Transaction Logged', classes: "blue-grey" });
           $('#sb').trigger('click');
         }
