@@ -12,7 +12,7 @@ $(function() {
     $('#category').on('change', function() {
       var subCat = $("#subCategory");
       $("#subCategory option").remove();
-      subCat.append(new Option('Select Sub-Category', ''));
+      subCat.append(new Option('Select', ''));
       subCat.length = 1;
       if (this.selectedIndex < 1) return;
       if (this.value == 'Misc.') {
@@ -150,7 +150,7 @@ function drawChart(result, cat) {
     'backgroundColor': { fill: 'transparent' },
     'opacity': 0,
     'is3D': true,
-    'legend': 'left',
+    'legend': 'none',
     'sliceVisibilityThreshold': 0
   };
 
@@ -160,4 +160,5 @@ function drawChart(result, cat) {
   $("#loading").hide();
   var chart = new google.visualization.PieChart(document.getElementById('showBalDetail'));
   chart.draw(data, options);
+  $('.tap-target-content').css("cssText", "left: 40px !important;");
 }
