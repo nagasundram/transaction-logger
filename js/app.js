@@ -120,6 +120,12 @@ function getChartData(key) {
     }
   });
 }
+
+function setPosition(position) {
+  $("#location").trigger('focus');
+  $("#location").val(position.coords.latitude + "," + position.coords.longitude);
+  $("#amount").trigger('focus');
+}
 //Google Charts
 function drawChart(result, cat) {
   var rawData = result.expenses,
