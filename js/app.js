@@ -99,6 +99,7 @@ $(function() {
           });
           $("#loading").hide();
           $("#showBalDetail").html(htmlResult);
+          $('.tap-target-content').css("cssText", "left: 160px !important;");
           var elem = $("#tap-target"),
             instance = M.TapTarget.getInstance(elem);
           instance.open();
@@ -150,7 +151,7 @@ function drawChart(result, cat) {
 
   // Set chart options
   var options = {
-    'title': cat + ' Total Expense: ₹' + result.totalExpense,
+    'title': cat + ' ₹' + result.totalExpense.toFixed(2),
     'width': 400,
     'height': 300,
     'backgroundColor': { fill: 'transparent' },
@@ -166,5 +167,5 @@ function drawChart(result, cat) {
   $("#loading").hide();
   var chart = new google.visualization.PieChart(document.getElementById('showBalDetail'));
   chart.draw(data, options);
-  $('.tap-target-content').css("cssText", "left: 40px !important;");
+  $('.tap-target-content').css("cssText", "left: 42px !important;");
 }
