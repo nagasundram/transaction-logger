@@ -122,12 +122,15 @@ a,
   .tap-target-content {
     left: 65px !important;
   }
-  #expensesMap, #addTransaction {
+  #expensesMap, #addTransaction, #float-container {
     margin-left: 5% !important;
   }
   .progress {
     width: 50% !important;
     left: 25% !important;
+  }
+  .fixed-action-btn.active ul {
+    bottom: 40px !important;
   }
 
 }

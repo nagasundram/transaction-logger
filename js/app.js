@@ -1,13 +1,20 @@
 $(function() {
   $(document).ready(function() {
     $('select').formSelect();
-    $('.fixed-action-btn').floatingActionButton();
+    $('#float-container').floatingActionButton();
     $('.modal').modal();
+    $('#addTransaction').hide();
+    $('#list').hide();
     var elems = document.querySelectorAll('.tap-target');
     var instances = M.TapTarget.init(elems, {});
 
     $("#loading").hide();
     $("#miscSubCatCon").hide();
+    $('#float-container').on('click', function(){
+      M.FloatingActionButton.getInstance($('#float-container')).destroy();
+      $('#float-container').floatingActionButton();
+      M.FloatingActionButton.getInstance($('#float-container')).open();
+    })
 
     $('#category').on('change', function() {
       var subCat = $("#subCategory");

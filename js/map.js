@@ -19,11 +19,26 @@ $(function() {
       $('#expensesMap').show();
       $("#form_card").show().removeClass('hide');
       $("#map").hide();
+      $('#list').hide();
+      $('#listTgr').show();
+      M.FloatingActionButton.getInstance($('#float-container')).close();
     })
 
     $('#expensesMap').on('click', function(e) {
       $("#loading").show();
+      $('#listTgr').show();
+      $('#list').hide();
       getMap();
+    })
+
+    $('#listTgr').on('click', function(e) {
+      $('#addTransaction').show();
+      $('#expensesMap').show();
+      $('#listTgr').hide();
+      $("#form_card").hide();
+      $("#map").hide();
+      $("#list").show()
+      M.FloatingActionButton.getInstance($('#float-container')).close();
     })
 
     function setPosition(position) {
@@ -35,6 +50,8 @@ $(function() {
 })
 
 function getMap() {
+  M.FloatingActionButton.getInstance($('#float-container')).close();
+  $('#float-container').floatingActionButton();
   $.ajax({
     url: CHART_URL + "?isMap=true",
     type: 'GET',

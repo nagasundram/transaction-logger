@@ -24,6 +24,9 @@
 </head>
 
 <body>
+  <!-- List Area -->
+  <div id="list" class="white-text">Coming soon...</div>
+  <!-- List Area -->
   <!-- Map Area -->
   <div id="map">
     <div id="map-canvas"></div>
@@ -124,16 +127,26 @@
       <i class="large material-icons">fingerprint</i>
     </a>
   </div>
-  <div class="fixed-action-btn" style="right: auto; margin-left: 2%;" id="addTransaction">
+  <!-- <div class="fixed-action-btn" style="right: auto; margin-left: 2%;" >
     <a class="btn-floating btn-medium teal">
       <i class="large material-icons">add</i>
     </a>
   </div>
-  <div class="fixed-action-btn" style="right: auto; margin-left: 2%;" id="expensesMap">
+  <div class="fixed-action-btn" style="right: auto; margin-left: 2%;" >
     <a class="btn-floating btn-medium teal">
       <i class="large material-icons">map</i>
     </a>
-  </div>
+  </div> -->
+  <div class="fixed-action-btn" style="right: auto; margin-left: 2%;" id="float-container">
+  <a class="btn-floating btn-medium teal">
+    <i class="large material-icons">apps</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating green" id="addTransaction"><i class="material-icons">add</i></a></li>
+    <li><a class="btn-floating yellow darken-1" id="expensesMap"><i class="material-icons">map</i></a></li>
+    <li><a class="btn-floating blue" id="listTgr"><i class="material-icons">list</i></a></li>
+  </ul>
+</div>
   <!-- Floating Buttons -->
   <!-- Tap Target Structure -->
   <div class="tap-target teal lighten-3" data-target="sb" id="tap-target">
