@@ -25,6 +25,7 @@ textarea {
 
 .card {
   margin: 10px 10px 10px 10px;
+  background: #263238 !important;
 }
 
 .card .card-action {
@@ -91,8 +92,35 @@ a,
   .dropdown-content img {
     width: 20px !important;
     height: 20px !important;
-    margin-top: 15px !important;
-    margin-right: 4px !important;
+    margin: 2px !important;
+    /*margin-top: 15px !important;*/
+    /*margin-right: 4px !important;*/
+  }
+  .dropdown-content li {
+    min-height: 30px !important;
+  }
+  .dropdown-content li>span {
+    font-size: 10px !important;
+    padding: 9px !important;
+    line-height: 2px !important;
+  }
+  html {
+    background: black !important;
+  }
+  .card {
+    background: black !important;
+  }
+  input, textarea, input:focus, textarea:focus {
+   box-shadow: 0 0 0 0 #fff !important;
+  }
+  .card .card-content {
+    padding: 15px !important;
+  }
+  .row {
+    margin-bottom: 10px !important
+  }
+  .tap-target-content {
+    left: 65px !important;
   }
 
 }

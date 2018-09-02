@@ -4,6 +4,7 @@
 <head>
   <link rel="stylesheet" href="./css/jquery.flipster.min.css">
   <meta name="viewport" content="width = device-width, initial-scale = 1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta charset="UTF-8">
@@ -29,7 +30,7 @@
   </div>
   <!-- Map Area -->
   <!-- Transaction Form -->
-  <div class="card blue-grey darken-4 z-depth-5 hide" id="form_card">
+  <div class="card z-depth-5 hide" id="form_card">
     <form class="row" id="transForm">
       <div class="col s12">
         <div class="card-content white-text">
@@ -48,7 +49,7 @@
             </div>
             <div class="input-field col s6">
               <select id="source" name="source" required class="validate">
-                <option value="">Select Source</option>
+                <option value="">Select</option>
                 <option data-icon="images/rupee.png" value="Cash">Cash</option>
                 <option data-icon="images/icici.png" value="ICICI">ICICI</option>
                 <option data-icon="images/hdfc.png" value="HDFC">HDFC</option>
@@ -65,7 +66,7 @@
           <div class="row">
             <div class="input-field col s6">
               <select id="category" required>
-                <option value="">Select Category</option>
+                <option value="">Select</option>
                 <option value="Food">Food</option>
                 <option value="Shopping">Shopping</option>
                 <option value="Entertainment">Entertainment</option>
@@ -78,7 +79,7 @@
             </div>
             <div class="input-field col s6" id="subCatCon">
               <select id="subCategory">
-                <option value="">Select Sub-Category</option>
+                <option value="">Select</option>
               </select>
               <label>Sub Category</label>
             </div>
@@ -105,7 +106,7 @@
           </div>
           <!-- location -->
           <div class="row">
-            <button class="btn waves-effect waves-teal blue-grey darken-3" type="submit">Log
+            <button class="btn waves-effect waves-teal blue-grey darken-3 submit-btn" type="submit">Log
               <i class="material-icons right">add</i>
             </button>
           </div>
@@ -119,17 +120,17 @@
   <!-- Transaction Form -->
   <!-- Floating Buttons -->
   <div class="fixed-action-btn">
-    <a class="btn-floating btn-large teal pulse" id='sb'>
+    <a class="btn-floating btn-medium teal" id='sb'>
       <i class="large material-icons">fingerprint</i>
     </a>
   </div>
   <div class="fixed-action-btn" style="right: auto; margin-left: 2%;" id="addTransaction">
-    <a class="btn-floating btn-large teal pulse">
+    <a class="btn-floating btn-medium teal">
       <i class="large material-icons">add</i>
     </a>
   </div>
   <div class="fixed-action-btn" style="right: auto; margin-left: 2%;" id="expensesMap">
-    <a class="btn-floating btn-large teal pulse">
+    <a class="btn-floating btn-medium teal">
       <i class="large material-icons">map</i>
     </a>
   </div>
