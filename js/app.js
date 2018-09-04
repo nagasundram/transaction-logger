@@ -176,17 +176,3 @@ function drawChart(result, cat) {
   chart.draw(data, options);
   $('.tap-target-content').css("cssText", "left: 42px !important;");
 }
-
-function visibilityHandler() {
-  var hash = '#bg';
-  if (document.hidden && !window.location.hash) {
-    window.history.replaceState(null, null, window.location + hash);
-      alert(1);
-  } else if (!document.hidden && window.location.hash == hash) {
-      alert(2);
-    var l = '' + window.location;
-    window.history.replaceState(null, null, l.substr(0, l.length - hash.length));
-  }
-};
-document.addEventListener('visibilitychange', visibilityHandler, false);
-visibilityHandler();
