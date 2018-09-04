@@ -34,7 +34,7 @@ function getList() {
           amount = $("<span></span>").append('<strong>₹ ' + expense[2] + '</strong>').attr('class', 'right'),
           secodp = $("<p></p>").append(subCat).append(amount),
           info = $("<span></span>").text(expense[5]).attr('class', 'info-txt'),
-          thirdp = $("<p></p>").append(info).append(bill),
+          thirdp = $("<p></p>").append(info).append(bill).attr('style', 'min-height: 20px;'),
           lidiv = $("<div></div>").append(firstp).append(secodp).append('<hr>').append(thirdp);
           var li;
           if(index <= 3){
