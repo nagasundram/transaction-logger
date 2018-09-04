@@ -106,6 +106,15 @@ hr {
   opacity: 0.5
 }
 
+.info-txt {
+  margin-top: 5px !important;
+  height: 20px !important;
+  width: 85%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden !important;
+}
+
 /* EFFECTS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 

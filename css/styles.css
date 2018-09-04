@@ -82,11 +82,6 @@ a,
   margin-left: 31px;
 }
 
-.top-fix {
-  margin-top: 5px !important;
-  height: 20px !important;
-}
-
 @media only screen and (max-width: 360px) {
   .input-field input[type=text]{
     font-size: 12px !important;
