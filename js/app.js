@@ -10,11 +10,22 @@ $(function() {
 
     $("#loading").hide();
     $("#miscSubCatCon").hide();
-    $('#float-container').on('click', function(){
+    $('#float-container').on('click', function() {
       M.FloatingActionButton.getInstance($('#float-container')).destroy();
       $('#float-container').floatingActionButton();
       M.FloatingActionButton.getInstance($('#float-container')).open();
     })
+    document.addEventListener('click', function(event) {
+      console.log(21)
+      if (event.target.classList.contains('select-dropdown')) {
+        $(event.target).parent().parent().find('label').css('color', 'teal');
+      }
+    }, false);
+    document.addEventListener('mouseout', function(event) {
+      if (event.target.classList.contains('select-dropdown')) {
+        $(event.target).parent().parent().find('label').css('color', 'white');
+      }
+    }, false);
 
     $('#category').on('change', function() {
       var subCat = $("#subCategory");

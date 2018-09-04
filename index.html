@@ -2,7 +2,6 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width = device-width, initial-scale = 1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -49,13 +48,13 @@
           <!-- Amount, Source -->
           <div class="row">
             <div class="input-field col s6">
-              <input id="amount" type="text" required autocomplete="off">
+              <input id="amount" type="text" pattern="\d*" required autocomplete="off">
               <label for="amount">Amount</label>
             </div>
             <div class="input-field col s6">
               <select id="source" name="source" required class="validate">
                 <option value="">Select</option>
-                <option data-icon="images/rupee.png" value="Cash">Cash</option>
+                <option data-icon="images/rupee-white.png" value="Cash">Cash</option>
                 <option data-icon="images/icici.png" value="ICICI">ICICI</option>
                 <option data-icon="images/hdfc.png" value="HDFC">HDFC</option>
                 <option data-icon="images/icici.png" value="ICICI Credit">ICICI Credit</option>
@@ -97,8 +96,8 @@
           <!-- comments -->
           <div class="row">
             <div class="input-field col s12">
-              <textarea class="materialize-textarea" id="comments"></textarea>
-              <label for="textarea1">Comments</label>
+              <input type="text" id="comments"/>
+              <label for="comments">Comments</label>
             </div>
           </div>
           <!-- comments -->

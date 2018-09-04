@@ -100,9 +100,15 @@ a,
     min-height: 30px !important;
   }
   .dropdown-content li>span {
-    font-size: 10px !important;
+    font-size: 12px !important;
+    color: #fff;
     padding: 9px !important;
     line-height: 2px !important;
+  }
+  .dropdown-content {
+    background: black;
+    border: 1px teal solid;
+    border-radius: 5px;
   }
   html {
     background: black !important;
@@ -114,10 +120,10 @@ a,
    box-shadow: 0 0 0 0 #fff !important;
   }
   .card .card-content {
-    padding: 15px !important;
+    padding: 1px !important;
   }
   .row {
-    margin-bottom: 10px !important
+    margin-bottom: 3px !important
   }
   .tap-target-content {
     left: 65px !important;
