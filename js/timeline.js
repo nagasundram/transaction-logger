@@ -16,13 +16,13 @@ $(function() {
 function getList() {
   M.FloatingActionButton.getInstance($('#float-container')).close();
   $('#float-container').floatingActionButton();
+  $('#list .timeline ul').empty();
   $.ajax({
     url: CHART_URL + "?isMap=true",
     type: 'GET',
     success: function(result) {
       $("#loading").hide();
       var expenses = result.expenses;
-      html = '';
       expenses.forEach(function(expense, index) {
         var date = moment(expense[0]).format("DD-MM-YYYY HH:mm"),
           bill = expense[8].length > 0 ? '<span class="right"><a target="_blank" href="' + expense[8] + '"><i class="tiny material-icons">receipt</i></a></span>' : '',
@@ -42,7 +42,7 @@ function getList() {
           } else {
             li = $("<li></li>").html(lidiv).attr('data-after', CAT_ICONS[expense[4]]).attr('class', expense[3].replace(' ', ''));
           }
-        $('#list .timeline ul').append(li)
+        $('#list .timeline ul').append(li);
       })
       timlineAnimation();
     }

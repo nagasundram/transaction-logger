@@ -82,6 +82,15 @@ a,
   margin-left: 31px;
 }
 
+.submit-btn {
+  left: 40%;
+}
+.select-error {
+  font-size: 10px;
+  z-index: 2;
+  position: absolute;
+  display: none;
+}
 @media only screen and (max-width: 360px) {
   .input-field input[type=text]{
     font-size: 12px !important;

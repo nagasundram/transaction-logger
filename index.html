@@ -20,6 +20,9 @@
 </head>
 
 <body>
+  <div class="progress" id="loading">
+    <div class="indeterminate"></div>
+  </div>
   <!-- List Area -->
   <div id="list">
     <section class="timeline">
@@ -52,7 +55,7 @@
               <label for="amount">Amount</label>
             </div>
             <div class="input-field col s6">
-              <select id="source" name="source" required class="validate">
+              <select id="source" name="source">
                 <option value="">Select</option>
                 <option data-icon="images/rupee-white.png" value="Cash">Cash</option>
                 <option data-icon="images/icici.png" value="ICICI">ICICI</option>
@@ -63,13 +66,14 @@
                 <option data-icon="images/paytm.jpg" value="Paytm">Paytm</option>
               </select>
               <label for="source">Source</label>
+              <div class="select-error red-text">Please select Source</div>
             </div>
           </div>
           <!-- Amount, Source -->
           <!-- Category, sub -->
           <div class="row">
             <div class="input-field col s6">
-              <select id="category" required>
+              <select id="category">
                 <option value="">Select</option>
                 <option value="Food">Food</option>
                 <option value="Shopping">Shopping</option>
@@ -80,12 +84,14 @@
                 <option value="Misc.">Others</option>
               </select>
               <label>Category</label>
+              <div class="select-error red-text">Please select category</div>
             </div>
             <div class="input-field col s6" id="subCatCon">
               <select id="subCategory">
                 <option value="">Select</option>
               </select>
               <label>Sub Category</label>
+              <div class="select-error red-text">Please select sub category</div>
             </div>
             <div class="input-field col s6" id="miscSubCatCon">
               <input id="miscSubCategory" type="text" autocomplete="off">
@@ -96,7 +102,7 @@
           <!-- comments -->
           <div class="row">
             <div class="input-field col s12">
-              <input type="text" id="comments"/>
+              <input type="text" id="comments" />
               <label for="comments">Comments</label>
             </div>
           </div>
@@ -110,16 +116,13 @@
           </div>
           <!-- location -->
           <div class="row">
-            <button class="btn waves-effect waves-teal blue-grey darken-3 submit-btn" type="submit">Log
+            <button class="btn-floating btn-large waves-effect waves-teal blue-grey darken-3 submit-btn" type="submit">
               <i class="material-icons right">add</i>
             </button>
           </div>
         </div>
       </div>
     </form>
-  </div>
-  <div class="progress" id="loading">
-    <div class="indeterminate"></div>
   </div>
   <!-- Transaction Form -->
   <!-- Floating Buttons -->

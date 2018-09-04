@@ -16,7 +16,6 @@ $(function() {
       M.FloatingActionButton.getInstance($('#float-container')).open();
     })
     document.addEventListener('click', function(event) {
-      console.log(21)
       if (event.target.classList.contains('select-dropdown')) {
         $(event.target).parent().parent().find('label').css('color', 'teal');
       }
@@ -61,12 +60,22 @@ $(function() {
             alert("Geo location is not supported by this browser.");
           }
           M.toast({ html: 'Transaction Logged', classes: "blue-grey" });
-          $('#sb').trigger('click');
+          $('#listTgr').trigger('click');
         }
       });
     }
 
     $('#transForm').on('submit', function(e) {
+      var selectIds = ['#source', '#category', '#subCategory'],
+      errFlag = 0;
+      $('.select-error').hide();
+      for(i in selectIds) {
+        if($(selectIds[i]).val() == '') {
+          errFlag = 1;
+          $(selectIds[i]).parent().parent().find('.select-error').show()
+        }
+      }
+      if (errFlag) return false;
       e.preventDefault();
       var amt = $('#amount').val(),
         cat = $('#category').val(),
