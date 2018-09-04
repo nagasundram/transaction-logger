@@ -31,16 +31,6 @@ $(function() {
       getMap();
     })
 
-    $('#listTgr').on('click', function(e) {
-      $('#addTransaction').show();
-      $('#expensesMap').show();
-      $('#listTgr').hide();
-      $("#form_card").hide();
-      $("#map").hide();
-      $("#list").show()
-      M.FloatingActionButton.getInstance($('#float-container')).close();
-    })
-
     function setPosition(position) {
       $("#location").trigger('focus');
       $("#location").val(position.coords.latitude + "," + position.coords.longitude);

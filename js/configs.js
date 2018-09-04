@@ -27,4 +27,12 @@ var CATEGORIES = {
   },
   WRITE_URL = "https://script.google.com/macros/s/AKfycbzp29Qzo_oLjAgi2UnhkRDl798lXFiU99Jy-aqXIuuE8NF0Ejlq/exec?row=",
   READ_URL = "https://script.google.com/macros/s/AKfycbwiLibhxusQjgb4yl_3ue0_wY_NojiSRQI1KZOu7HZXMapFO2k/exec",
-  CHART_URL = "https://script.google.com/macros/s/AKfycbzqbIwv3mExSH1I_kq3QiTiTvD85rXgI7uEWYnkjbe3JGJsnB0/exec";
+  CHART_URL = "https://script.google.com/macros/s/AKfycbzqbIwv3mExSH1I_kq3QiTiTvD85rXgI7uEWYnkjbe3JGJsnB0/exec",
+  CAT_ICONS = {
+    'Food' : 'restaurant',
+    'Travel': 'directions_car',
+    'Shopping': 'shopping_cart',
+    'Entertainment': 'local_activity',
+    'Payments': 'import_export',
+    'Misc.': 'priority_high'
+  };
