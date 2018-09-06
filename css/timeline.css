@@ -64,9 +64,10 @@
   border-radius: 50%;
   background: black !important;
   border: 2px solid;
-  bottom: 25px;
+  bottom: 25px !important;
   text-align:center;
-  line-height:25px;
+  line-height: 24px;
+  font-size: 15px;
 }
 
 .timeline ul li div {

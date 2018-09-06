@@ -36,3 +36,11 @@ var CATEGORIES = {
     'Payments': 'import_export',
     'Misc.': 'priority_high'
   };
+  CAT_ICONS_IOS = {
+    'Food' : '🍽',
+    'Travel': '🚘',
+    'Shopping': '🛍',
+    'Entertainment': '🎭',
+    'Payments': '🗓',
+    'Misc.': '❕'
+  };

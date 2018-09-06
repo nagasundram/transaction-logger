@@ -66,7 +66,7 @@ $(function() {
     }
 
     $('#transForm').on('submit', function(e) {
-      var selectIds = ['#source', '#category', '#subCategory'],
+      var selectIds = ['#source', '#category'],
       errFlag = 0;
       $('.select-error').hide();
       for(i in selectIds) {

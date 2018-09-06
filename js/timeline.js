@@ -38,9 +38,9 @@ function getList() {
           lidiv = $("<div></div>").append(firstp).append(secodp).append('<hr>').append(thirdp);
           var li;
           if(index <= 3){
-            li = $("<li></li>").html(lidiv).attr('data-after', CAT_ICONS[expense[4]]).attr('class', 'in-view ' + expense[3].replace(' ', ''));
+            li = $("<li></li>").html(lidiv).attr('data-after', CAT_ICONS_IOS[expense[4]]).attr('class', 'in-view ' + expense[3].replace(' ', ''));
           } else {
-            li = $("<li></li>").html(lidiv).attr('data-after', CAT_ICONS[expense[4]]).attr('class', expense[3].replace(' ', ''));
+            li = $("<li></li>").html(lidiv).attr('data-after', CAT_ICONS_IOS[expense[4]]).attr('class', expense[3].replace(' ', ''));
           }
         $('#list .timeline ul').append(li);
       })
