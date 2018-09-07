@@ -54,6 +54,7 @@ $(function() {
         success: function(result) {
           $("#loading").hide();
           $("#transForm").trigger("reset");
+          $(".submit-btn").attr('disabled', false);
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(setPosition);
           } else {
@@ -66,6 +67,7 @@ $(function() {
     }
 
     $('#transForm').on('submit', function(e) {
+      $(".submit-btn").attr('disabled', true);
       var selectIds = ['#source', '#category'],
       errFlag = 0;
       $('.select-error').hide();
@@ -75,7 +77,10 @@ $(function() {
           $(selectIds[i]).parent().parent().find('.select-error').show()
         }
       }
-      if (errFlag) return false;
+      if (errFlag) {
+        $(".submit-btn").attr('disabled', false);
+        return false;
+      }
       e.preventDefault();
       var amt = $('#amount').val(),
         cat = $('#category').val(),
