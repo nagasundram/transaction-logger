@@ -35,7 +35,7 @@ var CATEGORIES = {
     'Entertainment': 'local_activity',
     'Payments': 'import_export',
     'Misc.': 'priority_high'
-  };
+  },
   CAT_ICONS_IOS = {
     'Food' : '🍽',
     'Travel': '🚘',
@@ -43,4 +43,26 @@ var CATEGORIES = {
     'Entertainment': '🎭',
     'Payments': '🗓',
     'Misc.': '❕'
-  };
+  },
+  TIMELY_SUGGESTIONS = {
+    "6": ['Milk', 'Coffee'],
+    "7": ['Milk', 'Coffee', 'Vegtables'],
+    "8": ['Milk', 'Coffee', 'Vegtables'],
+    "9": ['Milk', 'Coffee', 'Vegtables'],
+    "22": ['Vegtables', 'Milk', 'Auto'],
+    "23": ['Vegtables', 'Milk', 'Auto'],
+    "WE6": ['Milk', 'Coffee'],
+    "WE7": ['Milk', 'Coffee', 'Vegtables'],
+    "WE8": ['Milk', 'Coffee', 'Vegtables'],
+    "WE9": ['Milk', 'Coffee', 'Vegtables'],
+    "WE9":["Auto", "Snacks", "Coffee"],
+    "WE10":["Snacks", "Coffee", "Auto"],
+    "WE11":["Snacks", "Coffee", "Auto"],
+  },
+  SUGGESTIONS = {
+    'Vegtables': ['Cash', 'Shopping', 'Groceries', '🍅', 'green', 'Vegtables'],
+    'Auto': ['Cash', 'Travel', 'Auto', '🚕', 'blue-grey', ''],
+    'Snacks': ['Cash', 'Food', 'Snacks', '🥠', 'red', '' ],
+    'Coffee': ['Cash', 'Food', 'Tea/Coffee', '☕️', 'brown', '' ],
+    'Milk': ['Cash', 'Shopping', 'Groceries', '🍶', 'grey', 'Milk' ]
+  }

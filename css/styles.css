@@ -91,6 +91,22 @@ a,
   position: absolute;
   display: none;
 }
+
+#suggestions {
+  display: none;
+  margin-left: 24%;
+  width: 50%;
+  z-index: 10;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 20px;
+}
+#suggestions button {
+  border-radius: 50%;
+  font-size: 20px;
+  margin-left: 5px;
+}
 @media only screen and (max-width: 360px) {
   .input-field input[type=text]{
     font-size: 12px !important;
@@ -146,6 +162,9 @@ a,
   }
   .fixed-action-btn.active ul {
     bottom: 40px !important;
+  }
+  #suggestions {
+    display: block !important;
   }
 
 }
