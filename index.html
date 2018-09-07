@@ -6,6 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Expenses">
+  <meta name="theme-color" content="#000000" />
   <meta charset="UTF-8">
   <link rel="preload" as="stylesheet">
   <link rel="manifest" href="manifest.json">
@@ -195,6 +196,19 @@
     };
   })();
   </script> -->
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('./js/sw.js').then(function(registration) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function(err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+  </script>
 </body>
 
 </html>

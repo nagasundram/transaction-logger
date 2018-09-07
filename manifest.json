@@ -4,11 +4,13 @@
   "icons": [
     {
       "src": "rupee-white.png",
-      "type": "image/png"
+      "type": "image/png",
+      "sizes": "120x120, 144x144"
     },
     {
       "src": "launch.png",
-      "type": "image/png"
+      "type": "image/png",
+      "sizes": "320x568"
     }
   ],
   "start_url": "",
