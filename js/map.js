@@ -77,7 +77,6 @@ function getMap() {
       var marker, i, scale, animation;
       window.setTimeout(function() {
         for (i = 0; i < locations.length; i++) {
-          scale = i == 0 ? 10 : 5;
           animation = i == 0 ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP;
 
           marker = new google.maps.Marker({
@@ -87,7 +86,7 @@ function getMap() {
             zIndex: locations[i][3],
             icon: {
               path: google.maps.SymbolPath.CIRCLE,
-              scale: scale,
+              scale: 5,
               strokeColor: MARKER_COLORS[expenses[i][3]],
               fillOpacity: 0.5,
               anchor: new google.maps.Point(0, 0),
