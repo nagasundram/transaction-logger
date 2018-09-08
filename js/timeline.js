@@ -4,7 +4,7 @@ $(function() {
       $('#addTransaction').show();
       $('#expensesMap').show();
       $('#listTgr').hide();
-      $("#form_card").hide();
+      $("#form_card, #suggestions").hide();
       $("#map").hide();
       $("#list").show()
       $("#loading").show();

@@ -7,17 +7,17 @@ $(function() {
     } else {
       alert("Geo location is not supported by this browser.");
     }
-    $("#form_card").show().removeClass('hide');
+    $("#form_card, #suggestions").show().removeClass('hide');
 
     function init() {
       $("#loading").show();
-      $("#form_card").hide();
+      $("#form_card, #suggestions").hide();
       getMap();
     }
     $('#addTransaction').on('click', function(e) {
       $('#addTransaction').hide();
       $('#expensesMap').show();
-      $("#form_card").show().removeClass('hide');
+      $("#form_card, #suggestions").show().removeClass('hide');
       $("#map").hide();
       $('#list').hide();
       $('#listTgr').show();
@@ -47,7 +47,7 @@ function getMap() {
     type: 'GET',
     success: function(result) {
       $("#loading").hide();
-      $("#form_card").hide();
+      $("#form_card, #suggestions").hide();
       $("#expensesMap").hide();
       $("#map").show();
       $("#addTransaction").show();

@@ -164,7 +164,7 @@ a,
     bottom: 40px !important;
   }
   #suggestions {
-    display: block !important;
+    display: block;
   }
 
 }
