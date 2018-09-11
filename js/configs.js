@@ -87,8 +87,8 @@ var CATEGORIES = {
     'Snacks': ['Cash', 'Food', 'Snacks', '🥠', 'red', ''],
     'Coffee': ['Cash', 'Food', 'Tea/Coffee', '☕️', 'brown', ''],
     'Milk': ['Cash', 'Shopping', 'Groceries', '🍶', 'grey', 'Milk'],
-    'ToOffice': ['Cash', 'Travel', 'Bus', '🚍', 'green', '🏢-🏡'],
-    'ToHome': ['Cash', 'Travel', 'Bus', '🚍', 'green', '🏡-🏢'],
+    'ToOffice': ['Cash', 'Travel', 'Bus', '🚍', 'green', '🏡-🏢'],
+    'ToHome': ['Cash', 'Travel', 'Bus', '🚍', 'green', '🏢-🏡'],
     'Bus': ['Cash', 'Travel', 'Bus', '🚍', 'green', ''],
-    'Bus': ['Cash', 'Food', 'Snacks', '🥜', 'brown lighten-2', '🥜']
+    'Peanuts': ['Cash', 'Food', 'Snacks', '🥜', 'brown lighten-2', '🥜']
   }

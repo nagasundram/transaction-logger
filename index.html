@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#000000" />
   <meta charset="UTF-8">
   <link rel="preload" as="stylesheet">
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="./manifest.json">
   <link rel="apple-touch-icon" href="rupee-white.png">
   <link rel="apple-touch-startup-image" href="launch.png">
   <link rel="stylesheet" href="./css/materialize.min.css">
@@ -192,7 +192,7 @@
   <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-      navigator.serviceWorker.register('./js/sw.js').then(function(registration) {
+      navigator.serviceWorker.register('./sw.js').then(function(registration) {
         // Registration was successful
         console.log('ServiceWorker registration successful with scope: ', registration.scope);
       }, function(err) {
