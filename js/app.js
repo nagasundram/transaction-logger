@@ -45,8 +45,8 @@ $(function() {
       }
     });
 
-    function write_action(amt, cat, subCat, source, comments, location) {
-      var data = [subCat, amt, source, cat, comments, location].join('|||');
+    function write_action(amt, cat, subCat, source, comments, location, billImgUrl) {
+      var data = [subCat, amt, source, cat, comments, location, billImgUrl].join('|||');
       $("#loading").show();
       $.ajax({
         url: WRITE_URL + data,
@@ -54,6 +54,8 @@ $(function() {
         success: function(result) {
           $("#loading").hide();
           $("#transForm").trigger("reset");
+          $('#filePreview, #fileError, #uploading, #billContainer').hide();
+          $('#billImgUrl').val('');
           $(".submit-btn").attr('disabled', false);
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(setPosition);
@@ -87,11 +89,12 @@ $(function() {
         subCat = $('#subCategory').val(),
         source = $('#source').val(),
         location = $('#location').val(),
-        comments = $('#comments').val();
+        comments = $('#comments').val(),
+        billImgUrl = $('#billImgUrl').val();
       if (cat == "Misc.") {
         subCat = $('#miscSubCategory').val();
       }
-      write_action(amt, cat, subCat, source, comments, location);
+      write_action(amt, cat, subCat, source, comments, location, billImgUrl);
     });
 
     $('#sb').on('click', function() {
