@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Expenses">
+  <meta name="theme-color" content="#000000" />
+  <meta charset="UTF-8">
+  <link rel="preload" as="stylesheet">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="rupee-white.png">
+  <link rel="apple-touch-startup-image" href="launch.png">
+  <link rel="stylesheet" href="./css/materialize.min.css">
+  <link rel="stylesheet" href="./css/jquery.flipster.min.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/timeline.css">
+  <link rel="stylesheet" href="./css/upload.css">
+  <title>Personal Transaction Logger</title>
+  <script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+  google.charts.load('current', { 'packages': ['corechart'] });
+  </script>
+</head>
+
+<body>
+  <div class="progress" id="loading">
+    <div class="indeterminate"></div>
+  </div>
+  <!-- List Area -->
+  <div id="list">
+    <section class="timeline">
+      <ul>
+      </ul>
+    </section>
+  </div>
+  <!-- List Area -->
+  <!-- Map Area -->
+  <div id="map">
+    <div id="map-canvas"></div>
+  </div>
+  <!-- Map Area -->
+  <!-- Transaction Form -->
+  <div class="card z-depth-5 hide" id="form_card">
+    <form class="row" id="transForm">
+      <div class="col s12">
+        <div class="card-content white-text">
+          <span class="card-title">
+            Transaction Logger
+            <span class="winControls right hide">
+              <a class="btn-floating btn-small blue-grey darken-3" id="minBtn">&nbsp;-&nbsp;</a>
+              <a class="btn-floating btn-small blue-grey darken-3" id="closeBtn">&nbsp;X&nbsp;</a>
+            </span>
+          </span>
+          <!-- Amount, Source -->
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="amount" type="text" pattern="\d*" required autocomplete="off">
+              <label for="amount">Amount</label>
+            </div>
+            <div class="input-field col s6">
+              <select id="source" name="source">
+                <option value="">Select</option>
+                <option data-icon="images/rupee-white.png" value="Cash">Cash</option>
+                <option data-icon="images/icici.png" value="ICICI">ICICI</option>
+                <option data-icon="images/hdfc.png" value="HDFC">HDFC</option>
+                <option data-icon="images/icici.png" value="ICICI Credit">ICICI Credit</option>
+                <option data-icon="images/hdfc.png" value="HDFC Credit">HDFC Credit</option>
+                <option data-icon="images/zeta.png" value="Zeta">Zeta</option>
+                <option data-icon="images/paytm.jpg" value="Paytm">Paytm</option>
+              </select>
+              <label for="source">Source</label>
+              <div class="select-error red-text">Please select Source</div>
+            </div>
+          </div>
+          <!-- Amount, Source -->
+          <!-- Category, sub -->
+          <div class="row">
+            <div class="input-field col s6">
+              <select id="category">
+                <option value="">Select</option>
+                <option value="Food">Food</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Travel">Travel</option>
+                <option value="Payments">Payments</option>
+                <option value="Transactions">Rare</option>
+                <option value="Misc.">Others</option>
+              </select>
+              <label>Category</label>
+              <div class="select-error red-text">Please select category</div>
+            </div>
+            <div class="input-field col s6" id="subCatCon">
+              <select id="subCategory">
+                <option value="">Select</option>
+              </select>
+              <label>Sub Category</label>
+              <div class="select-error red-text">Please select sub category</div>
+            </div>
+            <div class="input-field col s6" id="miscSubCatCon">
+              <input id="miscSubCategory" type="text" autocomplete="off">
+              <label for="miscSubCategory">Sub-Category</label>
+            </div>
+          </div>
+          <!-- Category, sub -->
+          <!-- comments -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" id="comments" />
+              <label for="comments">Comments</label>
+            </div>
+          </div>
+          <!-- comments -->
+          <!-- location -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="location" type="hidden" required>
+              <label for="location" class="hide">Location</label>
+            </div>
+          </div>
+          <!-- location -->
+          <!-- image -->
+          <div class="row" id="billContainer">
+            <div class="file-field input-field col s6">
+              <div class="btn btn-floating black">
+                <i class="material-icons black">attachment</i>
+                <input type="file" id="dbFile">
+              </div>
+              <div class="attachment-help">Bill</div>
+            </div>
+            <div class="col s6" id="billPreviewContainer">
+              <img src="./images/uploading.svg" alt="uploading" id="uploading">
+              <img src="" id="filePreview">
+              <i class="material-icons red" id="fileError">error</i>
+            </div>
+          </div>
+          <input id="billImgUrl" type="hidden">
+          <!-- image -->
+          <div class="row">
+            <button class="btn-floating btn-large waves-effect waves-teal blue-grey darken-3 submit-btn" type="submit">
+              <i class="material-icons right">add</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- Transaction Form -->
+  <!-- Floating Buttons -->
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-medium teal" id='sb'>
+      <i class="large material-icons">fingerprint</i>
+    </a>
+  </div>
+  <div class="fixed-action-btn" style="right: auto; margin-left: 2%;" id="float-container">
+    <a class="btn-floating btn-medium teal">
+    <i class="large material-icons">apps</i>
+  </a>
+    <ul>
+      <li><a class="btn-floating green" id="addTransaction"><i class="material-icons">add</i></a></li>
+      <li><a class="btn-floating yellow darken-1" id="expensesMap"><i class="material-icons">map</i></a></li>
+      <li><a class="btn-floating blue" id="listTgr"><i class="material-icons">list</i></a></li>
+    </ul>
+  </div>
+  <!-- Floating Buttons -->
+  <!-- Tap Target Structure -->
+  <div class="tap-target teal lighten-3" data-target="sb" id="tap-target">
+    <div class="tap-target-content" id="showBalDetail">
+    </div>
+  </div>
+  <!-- Tap Target Structure -->
+  <div id="suggestions">
+  </div>
+  <!-- <script>
+  var jqr = require('jquery');
+  </script> -->
+  <!-- <script src="./js/libs/hammer.min.js" onload="window.Hammer = module.exports;"></script> -->
+  <script src="./js/libs/jquery-3.3.1.min.js"></script>
+  <script src="./js/libs/materialize.min.js"></script>
+  <script src="./js/libs/moment.min.js"></script>
+  <script src="./js/configs.js"></script>
+  <script src="./js/map_style.js"></script>
+  <script src="./js/map.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/extras.js"></script>
+  <script src="./js/timeline.js"></script>
+  <script src="./js/Dropbox-sdk.js"></script>
+  <script src="./js/dropbox.js"></script>
+  <!-- <script>
+  (function() {
+    const { BrowserWindow } = require('electron').remote
+
+    function init() {
+      document.getElementById("minBtn").addEventListener("click", (e) => {
+        var window = BrowserWindow.getFocusedWindow();
+        window.minimize();
+      });
+      document.getElementById("closeBtn").addEventListener("click", (e) => {
+        var window = BrowserWindow.getFocusedWindow();
+        window.close();
+      });
+    };
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        init();
+      }
+    };
+  })();
+  </script> -->
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('./sw.js').then(function(registration) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function(err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+  </script>
+</body>
+
+</html>

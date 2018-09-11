@@ -1,0 +1,167 @@
+/* Material Icon Font
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/google_materialicons.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* TIMELINE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.timeline ul {
+  background: black;
+  padding: 50px 0;
+}
+
+.timeline ul li {
+  list-style-type: none;
+  position: relative;
+  width: 6px;
+  margin: 0 auto;
+  padding-top: 50px;
+  background: #000 !important;
+  color: white !important;
+  border: 1px white solid !important;
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+.timeline ul li::after {
+  font-family: 'Material Icons';
+  content: attr(data-after);
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: black !important;
+  border: 2px solid;
+  bottom: 25px !important;
+  text-align:center;
+  line-height: 24px;
+  font-size: 15px;
+}
+
+.timeline ul li div {
+  position: relative;
+  bottom: 0;
+  width: 400px;
+  padding: 10px;
+  background: black;
+  color: white !important;
+  border: 1px white solid !important;
+  border-radius: 10px;
+}
+
+.timeline ul li div::before {
+  content: '';
+  position: absolute;
+  bottom: 38px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.timeline ul li div {
+  left: 30px;
+}
+
+.timeline ul li div::before {
+  left: -15px;
+  border-width: 0px 8px 1px 7px;
+  border-style: double;
+}
+
+.timeline ul li div p {
+  line-height: 25px;
+}
+hr {
+  opacity: 0.5
+}
+
+.info-txt {
+  margin-top: 5px !important;
+  height: 20px !important;
+  width: 85%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden !important;
+}
+
+/* EFFECTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.timeline ul li::after {
+  transition: background .5s ease-in-out;
+}
+
+.timeline ul li.in-view::after {
+  background: white;
+}
+
+.timeline ul li div {
+  visibility: hidden;
+  opacity: 0;
+  transition: all .5s ease-in-out;
+}
+
+.timeline ul li div {
+  transform: translate3d(0px, 200px, 0px) skew(10deg,10deg);
+}
+
+.timeline ul li.in-view div {
+  transform: none;
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* GENERAL MEDIA QUERIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@media screen and (max-width: 900px) {
+  .timeline ul li div {
+    width: 250px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .timeline ul li {
+    margin-left: 20px;
+  }
+  .timeline ul li div {
+    width: calc(100vw - 91px);
+  }
+  .timeline ul li div::before {
+    left: -15px;
+    border-width: 0px 8px 1px 7px;
+    border-style: double;
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "short_name": "Expenses",
+  "name": "Personal Expenses Manager",
+  "icons": [
+    {
+      "src": "rupee-white.png",
+      "type": "image/png",
+      "sizes": "120x120, 144x144"
+    },
+    {
+      "src": "launch.png",
+      "type": "image/png",
+      "sizes": "320x568"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "#000",
+  "display": "standalone",
+  "scope": "",
+  "theme_color": "#000"
+}

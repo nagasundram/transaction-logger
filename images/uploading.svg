@@ -1,0 +1,9 @@
+<svg class="lds-blocks" width="50px"  height="50px"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;"><rect x="4" y="4" width="45" height="45" fill="#08d3d3">
+  <animate attributeName="fill" values="#008080;#08d3d3;#08d3d3" keyTimes="0;0.25;1" dur="0.8s" repeatCount="indefinite" begin="0s" calcMode="discrete"></animate>
+</rect><rect x="51" y="4" width="45" height="45" fill="#08d3d3">
+  <animate attributeName="fill" values="#008080;#08d3d3;#08d3d3" keyTimes="0;0.25;1" dur="0.8s" repeatCount="indefinite" begin="0.2s" calcMode="discrete"></animate>
+</rect><rect x="4" y="51" width="45" height="45" fill="#08d3d3">
+  <animate attributeName="fill" values="#008080;#08d3d3;#08d3d3" keyTimes="0;0.25;1" dur="0.8s" repeatCount="indefinite" begin="0.6000000000000001s" calcMode="discrete"></animate>
+</rect><rect x="51" y="51" width="45" height="45" fill="#08d3d3">
+  <animate attributeName="fill" values="#008080;#08d3d3;#08d3d3" keyTimes="0;0.25;1" dur="0.8s" repeatCount="indefinite" begin="0.4s" calcMode="discrete"></animate>
+</rect></svg>
