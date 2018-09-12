@@ -10,12 +10,6 @@ $(function() {
       $('#imageModal').css('transform', 'scale(1.5)').css('transform', 'rotate(90deg');
       return false;
     });
-    $$('#imageModal').doubleTap(function() {
-      setViewport(0)
-      alert('tap')
-      $('#imageModal').css('transform', 'scale(1)').css('transform', 'rotate(90deg)');
-      return false;
-    });
     $('select').formSelect();
     $('#float-container').floatingActionButton();
     $('.modal').modal();
