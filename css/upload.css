@@ -32,21 +32,10 @@
   width: 90% !important;
   height: 90% !important;
   background: #20364a;
-}
-#billImgLoader,
-#billImg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  object-fit: contain;
-  padding: 1px;
-  transform: rotate(90deg);
-}
-#billImgLoader {
-  width: 30px !important;
-  height: 30  px !important;
-  left: 45%;
+  overflow-y: auto;
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
 }
 #imageModal:after {
   content: " ";
@@ -62,7 +51,7 @@
   background: -o-linear-gradient(#20364a 0%, transparent 0%), -webkit-linear-gradient(135deg, #20364a 33.33%, transparent 33.33%) 0 0%, #20364a -webkit-linear-gradient(45deg, #20364a 33.33%, #000000 33.33%) 0 0%;
   background: -moz-linear-gradient(#20364a 0%, transparent 0%), -webkit-linear-gradient(135deg, #20364a 33.33%, transparent 33.33%) 0 0%, #20364a -webkit-linear-gradient(45deg, #20364a 33.33%, #000000 33.33%) 0 0%;
   background-repeat: repeat-x;
-  background-size: 0px 100%, 9px 27px, 9px 27px;
+  background-size: 0px 100%, 9px 20px, 9px 20px;
   transform: rotate(180deg);
   }
   #imageModal:before {
@@ -78,5 +67,5 @@
   background: -o-linear-gradient(#20364a 0%, transparent 0%), -webkit-linear-gradient(135deg, #20364a 33.33%, transparent 33.33%) 0 0%, #20364a -webkit-linear-gradient(45deg, #20364a 33.33%, #000000 33.33%) 0 0%;
   background: -moz-linear-gradient(#20364a 0%, transparent 0%), -webkit-linear-gradient(135deg, #20364a 33.33%, transparent 33.33%) 0 0%, #20364a -webkit-linear-gradient(45deg, #20364a 33.33%, #000000 33.33%) 0 0%;
   background-repeat: repeat-x;
-  background-size: 0px 100%, 9px 27px, 9px 27px;
+  background-size: 0px 100%, 9px 24px, 9px 24px;
   }

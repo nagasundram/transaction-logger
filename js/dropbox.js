@@ -13,9 +13,8 @@ $(function() {
       }
     });
     $('#modalClose').on('click', function() {
-      $('#billImg').attr('src', '');
       $('#imgDownloadLink').attr('href', '#!');
-      $('#imageModal').hide();
+      $('#imageModal').hide().css('background-image', '');
     })
   });
 });

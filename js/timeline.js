@@ -57,9 +57,8 @@ function imageLinkActionListener() {
     imageLink = $(this);
     imageLink.on('click', function(event) {
       var imgurl = $(event.target).parent().data('imgurl');
-      $('#billImg').attr('src', imgurl);
       $('#imgDownloadLink').attr('href', imgurl);
-      $('#imageModal').show();
+      $('#imageModal').show().css('background-image', "url("+ imgurl +")");
     })
   })
 }
