@@ -1,5 +1,21 @@
 $(function() {
   $(document).ready(function() {
+    $$('#imageModal').pinchIn(function() {
+      setViewport(0)
+      $('#imageModal').css('transform', 'scale(1)');
+      return false;
+    });
+    $$('#imageModal').pinchOut(function() {
+      setViewport(1)
+      $('#imageModal').css('transform', 'scale(1.5)').css('transform', 'rotate(90deg');
+      return false;
+    });
+    $$('#imageModal').doubleTap(function() {
+      setViewport(0)
+      alert('tap')
+      $('#imageModal').css('transform', 'scale(1)').css('transform', 'rotate(90deg)');
+      return false;
+    });
     $('select').formSelect();
     $('#float-container').floatingActionButton();
     $('.modal').modal();
@@ -71,10 +87,10 @@ $(function() {
     $('#transForm').on('submit', function(e) {
       $(".submit-btn").attr('disabled', true);
       var selectIds = ['#source', '#category'],
-      errFlag = 0;
+        errFlag = 0;
       $('.select-error').hide();
-      for(i in selectIds) {
-        if($(selectIds[i]).val() == '') {
+      for (i in selectIds) {
+        if ($(selectIds[i]).val() == '') {
           errFlag = 1;
           $(selectIds[i]).parent().parent().find('.select-error').show()
         }
@@ -203,4 +219,18 @@ function drawChart(result, cat) {
   var chart = new google.visualization.PieChart(document.getElementById('showBalDetail'));
   chart.draw(data, options);
   $('.tap-target-content').css("cssText", "left: 42px !important;");
+}
+
+function setViewport(setZoom) {
+  var content;
+  if (setZoom) {
+    content = 'width=device-width, initial-scale=1.0'
+  } else {
+    content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+  }
+  $('head').find('[name="viewport"]').remove();
+  var meta = document.createElement('meta');
+  meta.name = 'viewport';
+  meta.setAttribute('content', content);
+  document.getElementsByTagName('head')[0].appendChild(meta);
 }
