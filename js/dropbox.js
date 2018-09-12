@@ -1,6 +1,6 @@
 $(function() {
   $(document).ready(function() {
-    $('#filePreview, #fileError, #uploading, #billContainer').hide();
+    $('#filePreview, #fileError, #uploading, #billContainer, #imageModal').hide();
     $('#billImgUrl').val('');
     $('#dbFile').on('change', function(event) {
       uploadAndGetLink(event);
@@ -12,6 +12,11 @@ $(function() {
         $('#billContainer').hide();
       }
     });
+    $('#modalClose').on('click', function() {
+      $('#billImg').attr('src', '');
+      $('#imgDownloadLink').attr('href', '#!');
+      $('#imageModal').hide();
+    })
   });
 });
 
@@ -21,11 +26,11 @@ var uploadAndGetLink = function(event) {
   });
   var file = event.target.files[0],
     filePath = $("#dbFile").val(),
-    file_ext = filePath.substr(filePath.lastIndexOf('.')+1,filePath.length);
-    file_name = $('#amount').val() + '-' + moment().format("DD-MM-YYYY_HH-mm") + '.' + file_ext;
-    $('#filePreview').hide();
-    $('#uploading').show();
-    $('.submit-btn').attr('disabled', true);
+    file_ext = filePath.substr(filePath.lastIndexOf('.') + 1, filePath.length);
+  file_name = $('#amount').val() + '-' + moment().format("DD-MM-YYYY_HH-mm") + '.' + file_ext;
+  $('#filePreview').hide();
+  $('#uploading').show();
+  $('.submit-btn').attr('disabled', true);
   res = dbx.filesUpload({ path: '/Bills/' + file_name, contents: file })
     .then(function(response) {
       dbx.sharingCreateSharedLinkWithSettings({ path: response.path_display })
