@@ -23,11 +23,14 @@ function getList() {
     success: function(result) {
       $("#loading").hide();
       var expenses = result.expenses;
-      expenses.forEach(function(expense, index) {
+      expenses.reverse().forEach(function(expense, index) {
         var date = moment(expense[0]).format("DD-MM-YYYY HH:mm"),
           // bill = expense[8].length > 0 ? '<span class="right"><a target="_blank" href="' + expense[8] + '"><i class="tiny material-icons">receipt</i></a></span>' : '',
-          bill = expense[8].length > 0 ? '<span class="right"><a class="billImgLink" href="javascript:;" data-imgurl="' + expense[8] + '"><i class="tiny material-icons">receipt</i></a></span>' : '',
+          bill = expense[8].length > 0 ? '<span class="right"><a class="billImgLink" href="javascript:;" data-imgurl="' + expense[8] + '"><i class="tiny material-icons">receipt</i></a></span>' : '', id,
           sourceColor = expense[3].includes('Credit') ? 'red-text' : 'green-text';
+          if(moment(expense[0]).format("DD-MM-YYYY") == moment().format("DD-MM-YYYY")) {
+            id = $('<a></a>').append("<i class='tiny material-icons timline-id'>info</i>").attr('class', 'expId').attr('data-id', expense[9]);
+          }
         var time = $("<time></time>").text(date),
           source = $("<span></span>").text(expense[3]).attr('class', 'right ' + sourceColor),
           firstp = $("<p></p>").append(time).append(source),
@@ -35,7 +38,7 @@ function getList() {
           amount = $("<span></span>").append('<strong>₹ ' + expense[2] + '</strong>').attr('class', 'right'),
           secodp = $("<p></p>").append(subCat).append(amount),
           info = $("<span></span>").text(expense[5]).attr('class', 'info-txt'),
-          thirdp = $("<p></p>").append(info).append(bill).attr('style', 'min-height: 20px;'),
+          thirdp = $("<p></p>").append(id).append(info).append(bill).attr('style', 'min-height: 20px;'),
           lidiv = $("<div></div>").append(firstp).append(secodp).append('<hr>').append(thirdp);
         var li;
         if (index <= 3) {
@@ -46,6 +49,7 @@ function getList() {
         $('#list .timeline ul').append(li);
       })
       imageLinkActionListener();
+      expIdActionListener();
       timlineAnimation();
     }
   });
@@ -58,15 +62,49 @@ function imageLinkActionListener() {
     imageLink.on('click', function(event) {
       var imgurl = $(event.target).parent().data('imgurl');
       $('#imgDownloadLink').attr('href', imgurl);
-      $('#imageModal').show().css('background-image', "url("+ imgurl +")");
+      $('#imageModal').show().css('background-image', "url(" + imgurl + ")");
     })
   })
 }
 
+function expIdActionListener() {
+  var expIds = $(".expId");
+  expIds.each(function() {
+    expID = $(this);
+    expID.on('click', function(event) {
+      var id = $(event.target).parent().data('id'),
+        idDiv = $('<div class="watermark"></div>').append('<p class="water-text">' + id + '</p>')
+      $.ajax({
+        url: ACTION_URL + "?id=" + id + "&actionName=SHOW",
+        type: 'GET',
+        success: function(result) {
+          $('#actionModal').modal();
+          var infoDiv = $('<div></div>').attr('id', 'expense').attr('data-id', id).append(idDiv).append('<hr>' + result.split(',').join('<br><hr>') + '<hr>').attr('style', 'padding: 0px 6px 0 6px;');
+          $('#actionModal').modal('open').find('.modal-content').empty().append(infoDiv)
+          $('#actionModal').find('.modal-delete').attr('onclick', 'deleteExp(' + id + ')')
+        }
+      });
+    })
+  })
+}
+
+function deleteExp(id) {
+  var ok = confirm("Want to remove? \n" + id);
+  if (ok) {
+    $.ajax({
+      url: ACTION_URL + "?id=" + id + "&actionName=DESTROY",
+      type: 'GET',
+      success: function(result) {
+        alert(result)
+        $('#actionModal').modal('close');
+        $('#list .timeline ul').empty();
+        $('#listTgr').trigger('click');
+      }
+    });
+  }
+}
+
 function timlineAnimation() {
-
-  'use strict';
-
   // define variables
   var items = document.querySelectorAll(".timeline li");
 

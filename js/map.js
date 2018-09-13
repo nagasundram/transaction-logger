@@ -54,7 +54,7 @@ function getMap() {
 
       var expenses = result.expenses,
         locations = [];
-      expenses.forEach(function(expense, index) {
+      expenses.reverse().forEach(function(expense, index) {
         var date = moment(expense[0]).format("DD-MM-YYYY HH:mm"),
           bill = expense[8].length > 0 ? '<br><div><a target="_blank" href="' + expense[8] + '"><i class="tiny material-icons">receipt</i></a></div>' : '';
         locations.push(['<div>' + date + '</div><hr><div>' + expense[1] + '<span class="new badge" style="background: ' + MARKER_COLORS[expense[3]] + '" data-badge-caption="₹ ' + expense[2] + '">' + expense[3] + ' </span></div><br><div>' + expense[5] + '</div>' + bill, expense[6].split(',')[0], expense[6].split(',')[1], expenses.length - index])
