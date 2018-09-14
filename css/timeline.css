@@ -167,6 +167,11 @@ hr {
   text-align: center;
   border: 1px dashed white;
 }
+#filter-slide {
+  background: black;
+  border: 1px solid white;
+  width: 95%;
+}
 
 
 /* GENERAL MEDIA QUERIES

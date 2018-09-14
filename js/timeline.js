@@ -8,6 +8,7 @@ $(function() {
       $("#map").hide();
       $("#list").show()
       $("#loading").show();
+      $('#filter-slide').sidenav();
       getList();
     });
   })
