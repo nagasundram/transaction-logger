@@ -30,10 +30,13 @@
     <li>
       <div class="container">
         <div class="row">
-          <div class="input-field col s10">
-            <i class="material-icons prefix white-text">search</i>
+          <div class="input-field col s6">
             <input id="searchQuery" type="text">
             <label for="searchQuery">Search</label>
+          </div>
+          <div class="input-field col s6">
+              <input id="expDate" type="text" class="datepicker">
+            <label for="expDate">Date</label>
           </div>
         </div>
       </div>
@@ -52,7 +55,7 @@
           </div>
           <div class="col s6">
             <label>
-              <input type="checkbox" value="Shopping" name="category"/>
+              <input type="checkbox" value="Shopping" name="category" />
               <span>Shopping</span>
             </label>
           </div>
@@ -164,6 +167,10 @@
   <!-- progress bar -->
   <!-- List Area -->
   <div id="list">
+    <section class="summary" id="summaryArea">
+      <span>Total Expenses: ₹ </span>
+      <strong id="total"></strong>
+    </section>
     <section class="timeline">
       <ul></ul>
     </section>

@@ -9,6 +9,22 @@ $(function() {
       $("#list").show()
       $("#loading").show();
       $('#filter-slide').sidenav();
+      $('#expDate').datepicker();
+      $('#summaryArea').removeClass('show-summary');
+      $('#expDate').datepicker({
+        onOpen: function() {
+          var instance = M.Datepicker.getInstance($('.datepicker'));
+          instance.options.minDate = new Date(moment().startOf('month'));
+          instance.options.maxDate = new Date(moment().endOf('day'));
+          instance.options.autoClose = true;
+        },
+        onDraw: function() {
+          var instance = M.Datepicker.getInstance($('.datepicker'));
+          instance.options.minDate = new Date(moment().startOf('month'));
+          instance.options.maxDate = new Date(moment().endOf('day'));
+          instance.options.autoClose = true;
+        }
+      });
       getList();
     });
     $('#applyFilter').on('click', function(e) {
@@ -49,7 +65,7 @@ function getList() {
           source = $("<span></span>").text(expense[3]).attr('class', 'source right ' + sourceColor),
           firstp = $("<p></p>").append(time).append(source),
           subCat = $("<span></span>").text(expense[1]).attr('class', 'sub-cat'),
-          amount = $("<span></span>").append('<strong>₹ ' + expense[2] + '</strong>').attr('class', 'right'),
+          amount = $("<span></span>").append('<strong>₹ </strong>').append('<strong class="display-amount">' + expense[2] + '</strong>').attr('class', 'right'),
           secodp = $("<p></p>").append(subCat).append(amount),
           info = $("<span></span>").text(expense[5]).attr('class', 'info-txt'),
           thirdp = $("<p></p>").append(id).append(info).append(bill).attr('style', 'min-height: 20px;'),
@@ -62,6 +78,7 @@ function getList() {
         }
         $('#list .timeline ul').append(li);
       })
+      applyFilter();
       imageLinkActionListener();
       expIdActionListener();
       timlineAnimation();
@@ -150,7 +167,7 @@ function timlineAnimation() {
 };
 
 function resetFilter() {
-  $('#searchQuery').val('')
+  $('#searchQuery, #expDate').val('')
   $("input:checkbox:checked").each(function() {
     $(this).prop('checked', false);
   });
@@ -161,6 +178,7 @@ function applyFilter() {
   var query = $('#searchQuery').val(),
     categories = new Array(),
     sources = new Array();
+  queryDate = moment($('#expDate').val()).format("DD-MM-YYYY");
   $("input:checkbox:checked").each(function() {
     ($(this).attr('name') == 'source') ? sources.push($(this).val()): categories.push($(this).val());
   });
@@ -176,17 +194,28 @@ function applyFilter() {
   }
 
   var ul = $('#list .timeline ul'),
-    lis = ul.find('li');
+    lis = ul.find('li'),
+    total = 0,
+    filteredCount = 0;
 
   for (i = 0; i < lis.length; i++) {
     var li = $(lis[i]),
-      filteredCount = 0,
       category = Object.keys(CAT_ICONS_IOS).filter(function(key) { return CAT_ICONS_IOS[key] === li.data("after") })[0],
       source = li.find('.source').text(),
       subCat = li.find('.sub-cat').text(),
-      info = li.find('.info-txt').text();
-    if ((subCat.includes(query) || info.includes(query)) && categories.includes(category) && sources.includes(source)) {
+      info = li.find('.info-txt').text(),
+      traDate = li.find('time').text().slice(0, 10),
+      amount = parseFloat(li.find('.display-amount').text());
+    condition = true;
+    if (queryDate.length == 10) {
+      condition = (subCat.includes(query) || info.includes(query)) && categories.includes(category) && sources.includes(source) && traDate.includes(queryDate)
+    } else {
+      condition = (subCat.includes(query) || info.includes(query)) && categories.includes(category) && sources.includes(source)
+    }
+    if (condition) {
       filteredCount++;
+      total += amount;
+      console.log(amount, total)
       if (filteredCount <= 3) {
         li.show().addClass('in-view')
       } else {
@@ -196,5 +225,6 @@ function applyFilter() {
       li.hide();
     }
   }
+  $('#summaryArea').addClass('show-summary').find('#total').html(total);
   $('#filter-slide').sidenav('close');
 }
