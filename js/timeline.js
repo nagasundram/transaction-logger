@@ -26,12 +26,19 @@ function getList() {
       var expenses = result.expenses;
       expenses.reverse().forEach(function(expense, index) {
         var date = moment(expense[0]).format("DD-MM-YYYY HH:mm"),
-          // bill = expense[8].length > 0 ? '<span class="right"><a target="_blank" href="' + expense[8] + '"><i class="tiny material-icons">receipt</i></a></span>' : '',
-          bill = expense[8].length > 0 ? '<span class="right"><a class="billImgLink" href="javascript:;" data-imgurl="' + expense[8] + '"><i class="tiny material-icons">receipt</i></a></span>' : '', id,
-          sourceColor = expense[3].includes('Credit') ? 'red-text' : 'green-text';
-          if(moment(expense[0]).format("DD-MM-YYYY") == moment().format("DD-MM-YYYY")) {
-            id = $('<a></a>').append("<i class='tiny material-icons timline-id'>info</i>").attr('class', 'expId').attr('data-id', expense[9]);
+          bill;
+        if (expense[8].length > 0) {
+          if (expense[8].includes('app.box')) {
+            bill = expense[8].length > 0 ? '<span class="right"><a target="_blank" href="' + expense[8] + '"><i class="tiny material-icons">receipt</i></a></span>' : '';
+          } else {
+            bill = expense[8].length > 0 ? '<span class="right"><a class="billImgLink" href="javascript:;" data-imgurl="' + expense[8] + '"><i class="tiny material-icons">receipt</i></a></span>' : '';
           }
+        }
+        var id,
+          sourceColor = expense[3].includes('Credit') ? 'red-text' : 'green-text';
+        if (moment(expense[0]).format("DD-MM-YYYY") == moment().format("DD-MM-YYYY")) {
+          id = $('<a></a>').append("<i class='tiny material-icons timline-id'>info</i>").attr('class', 'expId').attr('data-id', expense[9]);
+        }
         var time = $("<time></time>").text(date),
           source = $("<span></span>").text(expense[3]).attr('class', 'right ' + sourceColor),
           firstp = $("<p></p>").append(time).append(source),
