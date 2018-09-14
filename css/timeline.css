@@ -116,6 +116,39 @@ hr {
   overflow: hidden !important;
 }
 
+.datepicker-calendar-container, .datepicker-calendar, .datepicker-footer {
+  background: black
+}
+.datepicker-table td {
+  color: white;
+}
+.datepicker-table td.is-disabled {
+  color: gray;
+}
+.datepicker-controls {
+  pointer-events: none;
+}
+
+#summaryArea {
+  background: black;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  color: white;
+  opacity: 0;
+  display: none;
+  border: 1px dashed white;
+}
+.show-summary {
+  opacity: 1 !important;
+  display: block !important;
+  transform: rotate(90deg) skew(20deg);
+  top: 20%;
+  left: 45%;
+  transition: all .5s ease-in-out;
+}
+
 /* EFFECTS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
