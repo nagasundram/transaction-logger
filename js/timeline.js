@@ -25,6 +25,17 @@ $(function() {
           instance.options.autoClose = true;
         }
       });
+      var subCatsHash = Object.values(CATEGORIES),
+        dataHash = {};
+      subCatsHash.forEach(function(hash, index) {
+        $.extend(dataHash, hash)
+      });
+      $.map(dataHash, function(value, key) {
+        return dataHash[key] = null;
+      });
+      $('#searchQuery').autocomplete({
+        data: dataHash
+      });
       getList();
     });
     $('#applyFilter').on('click', function(e) {
@@ -175,7 +186,7 @@ function resetFilter() {
 }
 
 function applyFilter() {
-  var query = $('#searchQuery').val(),
+  var query = $('#searchQuery').val().toUpperCase(),
     categories = new Array(),
     sources = new Array();
   queryDate = moment($('#expDate').val()).format("DD-MM-YYYY");
@@ -202,8 +213,8 @@ function applyFilter() {
     var li = $(lis[i]),
       category = Object.keys(CAT_ICONS_IOS).filter(function(key) { return CAT_ICONS_IOS[key] === li.data("after") })[0],
       source = li.find('.source').text(),
-      subCat = li.find('.sub-cat').text(),
-      info = li.find('.info-txt').text(),
+      subCat = li.find('.sub-cat').text().toUpperCase(),
+      info = li.find('.info-txt').text().toUpperCase(),
       traDate = li.find('time').text().slice(0, 10),
       amount = parseFloat(li.find('.display-amount').text());
     condition = true;
@@ -215,7 +226,6 @@ function applyFilter() {
     if (condition) {
       filteredCount++;
       total += amount;
-      console.log(amount, total)
       if (filteredCount <= 3) {
         li.show().addClass('in-view')
       } else {
