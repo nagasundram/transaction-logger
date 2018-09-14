@@ -21,12 +21,14 @@ $(function() {
       $("#map").hide();
       $('#list').hide();
       $('#listTgr').show();
+      $('#filter-slide').sidenav('destroy');
       M.FloatingActionButton.getInstance($('#float-container')).close();
     })
 
     $('#expensesMap').on('click', function(e) {
       $("#loading").show();
       $('#listTgr').show();
+      $('#filter-slide').sidenav('destroy');
       $('#list').hide();
       getMap();
     })
