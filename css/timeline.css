@@ -169,9 +169,11 @@ hr {
 }
 #filter-slide {
   background: black;
-  border: 1px solid white;
-  width: 95%;
+  border-right: 1px solid white;
 }
+#filter-slide .container {
+    width: 95%;
+  }
 
 
 /* GENERAL MEDIA QUERIES

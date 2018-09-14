@@ -11,6 +11,9 @@ $(function() {
       $('#filter-slide').sidenav();
       getList();
     });
+    $('#applyFilter').on('click', function(e) {
+      applyFilter();
+    })
   })
 })
 
@@ -40,9 +43,9 @@ function getList() {
           id = $('<a></a>').append("<i class='tiny material-icons timline-id'>info</i>").attr('class', 'expId').attr('data-id', expense[9]);
         }
         var time = $("<time></time>").text(date),
-          source = $("<span></span>").text(expense[3]).attr('class', 'right ' + sourceColor),
+          source = $("<span></span>").text(expense[3]).attr('class', 'source right ' + sourceColor),
           firstp = $("<p></p>").append(time).append(source),
-          subCat = $("<span></span>").text(expense[1]),
+          subCat = $("<span></span>").text(expense[1]).attr('class', 'sub-cat'),
           amount = $("<span></span>").append('<strong>₹ ' + expense[2] + '</strong>').attr('class', 'right'),
           secodp = $("<p></p>").append(subCat).append(amount),
           info = $("<span></span>").text(expense[5]).attr('class', 'info-txt'),
@@ -142,3 +145,45 @@ function timlineAnimation() {
   window.addEventListener("scroll", callbackFunc);
 
 };
+
+function applyFilter() {
+  var query = $('#searchQuery').val(),
+    categories = new Array(),
+    sources = new Array();
+  $("input:checkbox:checked").each(function() {
+    ($(this).attr('name') == 'source') ? sources.push($(this).val()): categories.push($(this).val());
+  });
+  if (categories.length == 0) {
+    $("input:checkbox[name='category']").each(function() {
+      categories.push($(this).val());
+    });
+  }
+  if (sources.length == 0) {
+    $("input:checkbox[name='source']").each(function() {
+      sources.push($(this).val());
+    });
+  }
+
+  var ul = $('#list .timeline ul'),
+    lis = ul.find('li');
+
+  for (i = 0; i < lis.length; i++) {
+    var li = $(lis[i]),
+      filteredCount = 0,
+      category = Object.keys(CAT_ICONS_IOS).filter(function(key) { return CAT_ICONS_IOS[key] === li.data("after") })[0],
+      source = li.find('.source').text(),
+      subCat = li.find('.sub-cat').text(),
+      info = li.find('.info-txt').text();
+    if ((subCat.includes(query) || info.includes(query)) && categories.includes(category) && sources.includes(source)) {
+      filteredCount++;
+      if(filteredCount <= 3){
+        li.show().addClass('in-view')
+      } else {
+        li.show();
+      }
+    } else {
+      li.hide();
+    }
+  }
+  $('#filter-slide').sidenav('close');
+}
