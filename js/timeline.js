@@ -14,6 +14,9 @@ $(function() {
     $('#applyFilter').on('click', function(e) {
       applyFilter();
     })
+    $('#resetFilter').on('click', function(e) {
+      resetFilter();
+    })
   })
 })
 
@@ -146,6 +149,14 @@ function timlineAnimation() {
 
 };
 
+function resetFilter() {
+  $('#searchQuery').val('')
+  $("input:checkbox:checked").each(function() {
+    $(this).prop('checked', false);
+  });
+  applyFilter();
+}
+
 function applyFilter() {
   var query = $('#searchQuery').val(),
     categories = new Array(),
@@ -176,7 +187,7 @@ function applyFilter() {
       info = li.find('.info-txt').text();
     if ((subCat.includes(query) || info.includes(query)) && categories.includes(category) && sources.includes(source)) {
       filteredCount++;
-      if(filteredCount <= 3){
+      if (filteredCount <= 3) {
         li.show().addClass('in-view')
       } else {
         li.show();
