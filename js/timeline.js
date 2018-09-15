@@ -11,6 +11,7 @@ $(function() {
       $('#filter-slide').sidenav();
       $('#expDate').datepicker();
       $('#summaryArea').removeClass('show-summary');
+      $('#today').removeClass('show-today');
       $('#expDate').datepicker({
         onOpen: function() {
           var instance = M.Datepicker.getInstance($('.datepicker'));
@@ -207,7 +208,8 @@ function applyFilter() {
   var ul = $('#list .timeline ul'),
     lis = ul.find('li'),
     total = 0,
-    filteredCount = 0;
+    filteredCount = 0,
+    todayTot = 0;
 
   for (i = 0; i < lis.length; i++) {
     var li = $(lis[i]),
@@ -223,6 +225,10 @@ function applyFilter() {
     } else {
       condition = (subCat.includes(query) || info.includes(query)) && categories.includes(category) && sources.includes(source)
     }
+    if (traDate.includes(moment().format("DD-MM-YYYY"))) {
+      console.log(todayTot)
+      todayTot += amount;
+    }
     if (condition) {
       filteredCount++;
       total += amount;
@@ -236,5 +242,6 @@ function applyFilter() {
     }
   }
   $('#summaryArea').addClass('show-summary').find('#total').html(total);
+  $('#today').addClass('show-today').find('#todayTotal').html(todayTot);
   $('#filter-slide').sidenav('close');
 }

@@ -148,6 +148,26 @@ hr {
   left: 45%;
   transition: all .5s ease-in-out;
 }
+#today {
+  background: black;
+  position: fixed;
+  z-index: 1;
+  width: 30%;
+  text-align: center;
+  color: white;
+  opacity: 0;
+  display: none;
+  border: 1px dashed white;
+}
+.show-today {
+  opacity: 1 !important;
+  display: block !important;
+  top: 57%;
+  left: 80%;
+  transform: rotate(90deg) skew(20deg);
+  -webkit-transform: rotate(90deg) skew(20deg);
+  transition: all .5s ease-in-out;
+}
 
 /* EFFECTS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
