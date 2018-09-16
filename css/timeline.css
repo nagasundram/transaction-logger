@@ -152,7 +152,7 @@ hr {
   background: black;
   position: fixed;
   z-index: 1;
-  width: 30%;
+  width: 50%;
   text-align: center;
   color: white;
   opacity: 0;
@@ -162,8 +162,8 @@ hr {
 .show-today {
   opacity: 1 !important;
   display: block !important;
-  top: 58%;
-  left: 77%;
+  top: 67%;
+  left: 70%;
   transform: rotate(90deg) skew(20deg) !important;
   -webkit-transform: rotate(90deg) skew(20deg) !important;
   transition: all .5s ease-in-out;
