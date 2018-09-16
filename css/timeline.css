@@ -162,10 +162,10 @@ hr {
 .show-today {
   opacity: 1 !important;
   display: block !important;
-  top: 57%;
-  left: 80%;
-  transform: rotate(90deg) skew(20deg);
-  -webkit-transform: rotate(90deg) skew(20deg);
+  top: 58%;
+  left: 77%;
+  transform: rotate(90deg) skew(20deg) !important;
+  -webkit-transform: rotate(90deg) skew(20deg) !important;
   transition: all .5s ease-in-out;
 }
 
