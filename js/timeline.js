@@ -271,22 +271,22 @@ function splitToday() {
     debit = $('#todayDebit').val(),
     credit = $('#todayCredit').val()
   total = parseFloat(debit) + parseFloat(credit);
-  split = '₹ ' + debit + ' ₹ ' + credit,
+  split = '₹ ' + debit + ' + ₹ ' + credit,
     whole = '₹ ' + total,
     htmlDebit = $('<span class="green-text"></span>').text('₹ ' + debit),
     htmlCredit = $('<span class="red-text"></span>').text('₹ ' + credit);
 
   if (totSpan.attr('data-total') == 'whole') {
     $("#todayTotal").attr('data-total', 'split').shuffleText(split, {
-      time: 30,
-      maxTime: 2500,
-      amount: 3,
+      time: 300,
+      maxTime: 5000,
+      amount: 5,
       complete: function() {
         $("#todayTotal").empty().append(htmlDebit).append(' + ').append(htmlCredit)
       }
     });
   } else {
-    $("#todayTotal").attr('data-total', 'whole').shuffleText(whole, { time: 30, maxTime: 2500, amount: 3, complete: null });
+    $("#todayTotal").attr('data-total', 'whole').shuffleText(whole, { time: 300, maxTime: 5000, amount: 5, complete: null });
 
   }
 }
