@@ -105,7 +105,7 @@ function imageLinkActionListener() {
     imageLink.on('click', function(event) {
       var imgurl = $(event.target).parent().data('imgurl');
       $('#imgDownloadLink').attr('href', imgurl);
-      $('#imageModal').show().css('background-image', "url(" + imgurl + ")");
+      $('#imageModal').show().css('background-image', "url(" + imgurl + ")").css('opacity', 1);
     })
   })
 }

@@ -14,7 +14,7 @@ $(function() {
     });
     $('#modalClose').on('click', function() {
       $('#imgDownloadLink').attr('href', '#!');
-      $('#imageModal').hide().css('background-image', '');
+      $('#imageModal').hide().css('background-image', '')..css('opacity', 0);
     })
   });
 });
