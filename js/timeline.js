@@ -176,6 +176,10 @@ function timlineAnimation() {
   window.addEventListener("resize", callbackFunc);
   window.addEventListener("scroll", callbackFunc);
 
+  //total animation
+  $('#todayTotal').on('click', function() {
+    splitToday(this)
+  });
 };
 
 function resetFilter() {
@@ -209,7 +213,9 @@ function applyFilter() {
     lis = ul.find('li'),
     total = 0,
     filteredCount = 0,
-    todayTot = 0;
+    todayTot = 0,
+    credit = 0,
+    debit = 0;
 
   for (i = 0; i < lis.length; i++) {
     var li = $(lis[i]),
@@ -226,8 +232,12 @@ function applyFilter() {
       condition = (subCat.includes(query) || info.includes(query)) && categories.includes(category) && sources.includes(source)
     }
     if (traDate.includes(moment().format("DD-MM-YYYY"))) {
-      console.log(todayTot)
       todayTot += amount;
+      if (source.includes('Credit')) {
+        credit += amount;
+      } else {
+        debit += amount;
+      }
     }
     if (condition) {
       filteredCount++;
@@ -241,7 +251,42 @@ function applyFilter() {
       li.hide();
     }
   }
-  $('#summaryArea').addClass('show-summary').find('#total').html(total);
-  $('#today').addClass('show-today').find('#todayTotal').html(todayTot);
+  $('#summaryArea').addClass('show-summary');
+  $("#total").shuffleText(total.toString(), {
+    time: 30,
+    maxTime: 2500,
+    amount: 5,
+    complete: function() {
+      $('#today').addClass('show-today');
+      $('#todayCredit').val(credit);
+      $('#todayDebit').val(debit);
+      $("#todayTotal").attr('data-total', 'whole').shuffleText('₹ ' + todayTot.toString(), { time: 30, maxTime: 2500, amount: 8, complete: null });
+    }
+  });
   $('#filter-slide').sidenav('close');
+}
+
+function splitToday() {
+  var totSpan = $('#todayTotal'),
+    debit = $('#todayDebit').val(),
+    credit = $('#todayCredit').val()
+  total = parseFloat(debit) + parseFloat(credit);
+  split = '₹ ' + debit + ' ₹ ' + credit,
+    whole = '₹ ' + total,
+    htmlDebit = $('<span class="green-text"></span>').text('₹ ' + debit),
+    htmlCredit = $('<span class="red-text"></span>').text('₹ ' + credit);
+
+  if (totSpan.attr('data-total') == 'whole') {
+    $("#todayTotal").attr('data-total', 'split').shuffleText(split, {
+      time: 30,
+      maxTime: 2500,
+      amount: 3,
+      complete: function() {
+        $("#todayTotal").empty().append(htmlDebit).append(' + ').append(htmlCredit)
+      }
+    });
+  } else {
+    $("#todayTotal").attr('data-total', 'whole').shuffleText(whole, { time: 30, maxTime: 2500, amount: 3, complete: null });
+
+  }
 }
