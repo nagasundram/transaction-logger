@@ -1,6 +1,18 @@
+var $uploadCrop;
 $(function() {
   $(document).ready(function() {
-    $('#filePreview, #fileError, #uploading, #billContainer, #imageModal').hide();
+    $uploadCrop = $('#cropper').croppie({
+      viewport: {
+        width: 320,
+        height: 568,
+        type: 'squere'
+      },
+      boundary: {
+        width: 320,
+        height: 568
+      }
+    });
+    $('#filePreview, #fileError, #uploading, #billContainer, #imageModal, .crop').hide();
     $('#billImgUrl').val('');
     $('#dbFile').on('change', function(event) {
       uploadAndGetLink(event);
@@ -16,6 +28,7 @@ $(function() {
       $('#imgDownloadLink').attr('href', '#!');
       $('#imageModal').hide().css('background-image', '').css('opacity', 0);
     })
+
   });
 });
 
@@ -23,30 +36,110 @@ var uploadAndGetLink = function(event) {
   const dbx = new Dropbox.Dropbox({
     accessToken: DB_TOKEN
   });
-  var file = event.target.files[0],
-    filePath = $("#dbFile").val(),
-    file_ext = filePath.substr(filePath.lastIndexOf('.') + 1, filePath.length);
-  file_name = $('#amount').val() + '-' + moment().format("DD-MM-YYYY_HH-mm") + '.' + file_ext;
-  $('#filePreview').hide();
-  $('#uploading').show();
-  $('.submit-btn').attr('disabled', true);
-  res = dbx.filesUpload({ path: '/Bills/' + file_name, contents: file })
-    .then(function(response) {
-      dbx.sharingCreateSharedLinkWithSettings({ path: response.path_display })
-        .then(function(response) {
-          $('#filePreview').show().attr('src', response.url + '&raw=1');
-          $('#billImgUrl').val(response.url + '%26raw=1');
-          $('#uploading').hide();
-          $('.submit-btn').attr('disabled', false);
-        })
-        .catch(function(error) {
-          $('#fileError').show();
-          console.log(error);
-        });
-    })
-    .catch(function(error) {
-      $('#fileError').show();
-      console.error(error);
+  var ok = confirm("Proceed to crop the image?");
+  if (ok) {
+    $(".crop").show();
+    $('#form_card, #suggestions').hide();
+    readFile(event.target);
+
+    $('#uploadCropped').on('click', function(ev) {
+      $uploadCrop.croppie('result', 'canvas').then(function(resp) {
+        // popupResult({ src: resp });
+        $('.crop').hide();
+        $('#form_card, #suggestions').show();
+        $('#filePreview').hide();
+        $('#uploading').show();
+        $('.submit-btn').attr('disabled', true);
+        var file_name = $('#amount').val() + '-' + moment().format("DD-MM-YYYY_HH-mm") + '.' + 'png',
+          imageData = _base64ToArrayBuffer(resp);
+        res = dbx.filesUpload({ path: '/Bills/' + file_name, contents: imageData })
+          .then(function(response) {
+            dbx.sharingCreateSharedLinkWithSettings({ path: response.path_display })
+              .then(function(response) {
+                $('#filePreview').show().attr('src', response.url + '&raw=1');
+                $('#billImgUrl').val(response.url + '%26raw=1');
+                $('#uploading').hide();
+                $('.submit-btn').attr('disabled', false);
+              })
+              .catch(function(error) {
+                $('#fileError').show();
+                console.log(error);
+              });
+          })
+          .catch(function(error) {
+            $('#fileError').show();
+            console.error(error);
+          });
+
+
+      });
     });
 
+    function popupResult(result) {
+      var html;
+      if (result.html) {
+        html = result.html;
+      }
+      if (result.src) {
+        html = '<img src="' + result.src + '" />';
+      }
+      $("#result").html(html);
+    }
+
+    function readFile(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $uploadCrop.croppie('bind', {
+            url: e.target.result
+          });
+          $('#cropper').addClass('ready');
+        }
+        reader.readAsDataURL(input.files[0]);
+      } else {
+        alert("Sorry - you're browser doesn't support the FileReader API");
+      }
+    }
+  } else {
+    var file = event.target.files[0],
+      filePath = $("#dbFile").val(),
+      file_ext = filePath.substr(filePath.lastIndexOf('.') + 1, filePath.length);
+    file_name = $('#amount').val() + '-' + moment().format("DD-MM-YYYY_HH-mm") + '.' + file_ext;
+    $('#filePreview').hide();
+    $('#uploading').show();
+    $('.submit-btn').attr('disabled', true);
+    res = dbx.filesUpload({ path: '/Bills/' + file_name, contents: file })
+      .then(function(response) {
+        dbx.sharingCreateSharedLinkWithSettings({ path: response.path_display })
+          .then(function(response) {
+            $('#filePreview').show().attr('src', response.url + '&raw=1');
+            $('#billImgUrl').val(response.url + '%26raw=1');
+            $('#uploading').hide();
+            $('.submit-btn').attr('disabled', false);
+          })
+          .catch(function(error) {
+            $('#fileError').show();
+            console.log(error);
+          });
+      })
+      .catch(function(error) {
+        $('#fileError').show();
+        console.error(error);
+      });
+  }
+
+}
+
+function _base64ToArrayBuffer(base64) {
+  base64 = base64.split('data:image/png;base64,').join('');
+  var binary_string = window.atob(base64),
+    len = binary_string.length,
+    bytes = new Uint8Array(len),
+    i;
+
+  for (i = 0; i < len; i++) {
+    bytes[i] = binary_string.charCodeAt(i);
+  }
+  return bytes.buffer;
 }

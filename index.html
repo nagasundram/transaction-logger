@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/timeline.css">
   <link rel="stylesheet" href="./css/upload.css">
+  <link rel="stylesheet" href="./css/croppie.css" />
   <title>Personal Transaction Logger</title>
   <script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -26,6 +27,12 @@
 </head>
 
 <body>
+  <div class="crop">
+    <button class="btn-floating waves-effect waves-teal white-text" id="uploadCropped" type="button">
+      <i class="material-icons">cloud_upload</i>
+    </button>
+    <div id="cropper"></div>
+  </div>
   <ul id="filter-slide" class="sidenav">
     <li>
       <div class="container">
@@ -336,6 +343,7 @@
   <script src="./js/libs/moment.min.js"></script>
   <script src="./js/libs/quo.min.js"></script>
   <script src="./js/libs/jquery.shuffleText.min.js"></script>
+  <script src="./js/libs/croppie.js"></script>
   <script src="./js/configs.js"></script>
   <script src="./js/map_style.js"></script>
   <script src="./js/map.js"></script>
