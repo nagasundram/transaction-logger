@@ -69,3 +69,18 @@
   background-repeat: repeat-x;
   background-size: 0px 100%, 9px 24px, 9px 24px;
   }
+
+.crop {
+  position: relative;
+}
+#uploadCropped {
+  position: absolute;
+  z-index: 10;
+  margin-top: 2%;
+  margin-left: 2%;
+  background: rgba(0,0,0,0.3);
+}
+#cropper {
+  position: absolute;
+  z-index: 8;
+}
