@@ -7,6 +7,13 @@ $(function() {
         height: 568,
         type: 'squere'
       },
+      quality: 0,
+      enableZoom: true,
+      showZoomer: false,
+      enforceBoundary: false,
+      enableExif: true,
+      enableOrientation: true,
+      enableResize: true,
       boundary: {
         width: 320,
         height: 568
@@ -28,7 +35,9 @@ $(function() {
       $('#imgDownloadLink').attr('href', '#!');
       $('#imageModal').hide().css('background-image', '').css('opacity', 0);
     })
-
+    $('#rotate').on('click', function() {
+      $uploadCrop.croppie('rotate', -90);
+    });
   });
 });
 

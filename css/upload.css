@@ -73,12 +73,16 @@
 .crop {
   position: relative;
 }
-#uploadCropped {
+#uploadCropped,
+#rotate {
   position: absolute;
   z-index: 10;
   margin-top: 2%;
   margin-left: 2%;
   background: rgba(0,0,0,0.3);
+}
+#rotate {
+margin-left: 84%;
 }
 #cropper {
   position: absolute;
