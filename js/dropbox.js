@@ -3,20 +3,20 @@ $(function() {
   $(document).ready(function() {
     $uploadCrop = $('#cropper').croppie({
       viewport: {
-        width: 300,
-        height: 440,
+        width: 310,
+        height: 550,
         type: 'squere'
       },
       quality: 0,
       enableZoom: true,
       showZoomer: false,
-      enforceBoundary: false,
+      enforceBoundary: true,
       enableExif: true,
       enableOrientation: true,
       enableResize: true,
       boundary: {
-        width: 320,
-        height: 568
+        width: 310,
+        height: 550
       }
     });
     $('#filePreview, #fileError, #uploading, #billContainer, #imageModal, .crop').hide();
@@ -52,7 +52,11 @@ var uploadAndGetLink = function(event) {
     readFile(event.target);
 
     $('#uploadCropped').on('click', function(ev) {
-      $uploadCrop.croppie('result', 'canvas').then(function(resp) {
+      $uploadCrop.croppie('result', {
+        type: 'base64',
+        quality: 0.8,
+        format: 'png'
+      }).then(function(resp) {
         // popupResult({ src: resp });
         $('.crop').hide();
         $('#form_card, #suggestions').show();
