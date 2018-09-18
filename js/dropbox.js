@@ -3,8 +3,8 @@ $(function() {
   $(document).ready(function() {
     $uploadCrop = $('#cropper').croppie({
       viewport: {
-        width: 320,
-        height: 568,
+        width: 300,
+        height: 440,
         type: 'squere'
       },
       quality: 0,
