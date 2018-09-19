@@ -28,13 +28,13 @@
   z-index: 1000;
   opacity: 0;
   display: block;
-  margin-top: 20%;
-  width: 90% !important;
-  height: 90% !important;
+  width: 98% !important;
+  height: 100% !important;
+  max-height: 100% !important;
   background: #20364a;
   overflow-y: auto;
   background-size: contain;
-  background-position: left center;
+  background-position: center;
   background-repeat: no-repeat;
 }
 #imageModal:after {
