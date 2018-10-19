@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Expenses">
+  <meta name="theme-color" content="#000000" />
+  <meta charset="UTF-8">
+  <link rel="preload" as="stylesheet">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="rupee-white.png">
+  <link rel="apple-touch-startup-image" href="launch.png">
+  <link rel="stylesheet" href="./css/materialize.min.css">
+  <link rel="stylesheet" href="./css/jquery.flipster.min.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <title>Personal Transaction Logger</title>
+</head>
+
+<body>
+  <div>
+    <a href="index.html" class="btn btn-floating btn-small black"><</a>
+    <table class="white-text" id="apiResult">
+      <thead>
+        <th data-sort='0'>Date</th>
+        <th data-sort='1'>Sub Category</th>
+        <th data-sort='2'>Amount</th>
+        <th data-sort='3'>Source</th>
+        <th data-sort='4'>Category</th>
+        <th data-sort='5'>Comments</th>
+      </thead>
+      <tbody id="apiTable"></tbody>
+    </table>
+  </div>
+  <script src="./js/libs/jquery-3.3.1.min.js"></script>
+  <script src="./js/libs/materialize.min.js"></script>
+  <script src="./js/libs/moment.min.js"></script>
+  <script src="./js/configs.js"></script>
+  <script src="./js/api.js"></script>
+</body>
+
+</html>
