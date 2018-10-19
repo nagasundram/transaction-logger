@@ -94,4 +94,4 @@ var CATEGORIES = {
     'Peanuts': ['Cash', 'Food', 'Snacks', '🥜', 'brown lighten-2', '🥜']
   },
   DB_TOKEN = 'jasF7eX3o5gAAAAAAAABI30WC38bFMydEOoWgDZnTnX-2uPZt5c3qwmPoKqXYNGy';
-  RUBY_API_ENDPOINT = 'http://expenses-sheet-api.herokuapp.com/expenses'
+  RUBY_API_ENDPOINT = 'https://expenses-sheet-api.herokuapp.com/expenses'
