@@ -169,6 +169,9 @@ a,
   #budget .progress {
     left : -5% !important;
   }
+  #budget
+    width: 100% !important;
+  }
 }
 
 table, th, td{
