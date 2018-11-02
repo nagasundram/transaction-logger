@@ -19,7 +19,7 @@ $(function() {
 
 function getAndShowBudget() {
   $.ajax({
-    url: BUDGET_URL,
+    url: "https://script.google.com/macros/s/AKfycbxb2XVYjTfM9CYNEvlpOHmj5QIR_-t3utN4gBMLwf1WLUNhPIs/exec",
     type: 'GET',
     success: function(result) {
       var budgets = result.budgets,
