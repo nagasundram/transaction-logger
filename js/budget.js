@@ -30,7 +30,7 @@ function getAndShowBudget() {
           percentage = ((used / budget[1]) * 100).toFixed(2),
           cat = budget[0],
           intPer = parseInt(percentage),
-          greenCat = ['Chit', 'Mutual Fund', 'Home'],
+          greenCat = ['Chit', 'Mutual Fund', 'Home', 'Savings'],
           color;
           if (greenCat.includes(cat)){
             color = (intPer <= 50) ? 'red' : (intPer <= 80) ? 'orange' : 'green';
