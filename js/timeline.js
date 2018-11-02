@@ -2,6 +2,8 @@ $(function() {
   $(document).ready(function() {
     $('#listTgr').on('click', function(e) {
       $('#addTransaction').show();
+      $('#budgetTgr').show();
+      $('#budget').hide();
       $('#expensesMap').show();
       $('#listTgr').hide();
       $("#form_card, #suggestions").hide();

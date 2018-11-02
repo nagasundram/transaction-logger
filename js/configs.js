@@ -22,7 +22,9 @@ var CATEGORIES = {
       "To ICICI": "To ICICI",
       "To HDFC": "To HDFC",
       "To Paytm": "To Paytm",
-      "WHC": "WHC"
+      "WHC": "WHC",
+      "To Home": "To Home",
+      "Savings": "Savings"
     }
   },
   WRITE_URL = "https://script.google.com/macros/s/AKfycbzp29Qzo_oLjAgi2UnhkRDl798lXFiU99Jy-aqXIuuE8NF0Ejlq/exec?row=",
@@ -88,7 +90,7 @@ var CATEGORIES = {
     'Auto': ['Cash', 'Travel', 'Auto', '🚕', 'blue-grey', ''],
     'Snacks': ['Cash', 'Food', 'Snacks', '🥠', 'red', ''],
     'Coffee': ['Cash', 'Food', 'Tea/Coffee', '☕️', 'brown', ''],
-    'Milk': ['Cash', 'Shopping', 'Groceries', '🍶', 'grey', 'Milk'],
+    'Milk': ['Paytm', 'Shopping', 'Groceries', '🍶', 'grey', 'Milk'],
     'ToOffice': ['Cash', 'Travel', 'Bus', '🚍', 'green', '🏡-🏢'],
     'ToHome': ['Cash', 'Travel', 'Bus', '🚍', 'green', '🏢-🏡'],
     'Bus': ['Cash', 'Travel', 'Bus', '🚍', 'green', ''],

@@ -168,6 +168,7 @@ a,
   }
   #budget .progress {
     left : -5% !important;
+    height: 20px !important;
   }
   #budget
     width: 100% !important;

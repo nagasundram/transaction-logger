@@ -18,12 +18,13 @@ $(function() {
 });
 
 function getAndShowBudget() {
+  var budgetDiv = $('#budget');
+  budgetDiv.empty();
   $.ajax({
     url: "https://script.google.com/macros/s/AKfycbxb2XVYjTfM9CYNEvlpOHmj5QIR_-t3utN4gBMLwf1WLUNhPIs/exec",
     type: 'GET',
     success: function(result) {
-      var budgets = result.budgets,
-        budgetDiv = $('#budget');
+      var budgets = result.budgets;
       $('#loading').hide();
       budgets.forEach(function(budget, index) {
         var used = budget[1] - budget[2],
@@ -40,8 +41,11 @@ function getAndShowBudget() {
           var catDiv = $("<div></div>").text(cat + ': ').attr('class', 'white-text col s3'),
           perDiv = $("<div></div>").text(intPer + '%').attr('class', 'white-text col s3'),
           prog = $("<div></div>").attr('class', 'determinate ' + color).attr('style', 'width: ' + intPer + '%'),
+          limitDiv = $("<div></div>").attr('class', 'col s6').attr('style', 'text-align: left').text(budget[1]),
+          usedDiv = $("<div></div>").attr('class', 'col s6').attr('style', 'text-align: right').text(used),
+          limitRow = $("<div></div>").attr('class', 'row').attr('style', 'position: relative; z-index: 9;').append(limitDiv).append(usedDiv),
           progressCon = $("<div></div>").attr('class', 'progress white col s6'),
-          progressDiv = progressCon.append(prog),
+          progressDiv = progressCon.append(limitRow).append(prog),
           rowDiv = $("<div></div>").attr('class', 'row').append(catDiv).append(perDiv).append(progressDiv);
         budgetDiv.append(rowDiv);
       });

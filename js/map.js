@@ -17,6 +17,8 @@ $(function() {
     $('#addTransaction').on('click', function(e) {
       $('#addTransaction').hide();
       $('#expensesMap').show();
+      $('#budgetTgr').show();
+      $('#budget').hide();
       $("#form_card, #suggestions").show().removeClass('hide');
       $("#map").hide();
       $('#list').hide();
@@ -53,6 +55,8 @@ function getMap() {
       $("#expensesMap").hide();
       $("#map").show();
       $("#addTransaction").show();
+      $('#budgetTgr').show();
+      $('#budget').hide();
 
       var expenses = result.expenses,
         locations = [];
