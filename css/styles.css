@@ -166,7 +166,9 @@ a,
   #suggestions {
     display: block;
   }
-
+  #budget .progress {
+    left : -5% !important;
+  }
 }
 
 table, th, td{

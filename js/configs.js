@@ -29,6 +29,7 @@ var CATEGORIES = {
   READ_URL = "https://script.google.com/macros/s/AKfycbwiLibhxusQjgb4yl_3ue0_wY_NojiSRQI1KZOu7HZXMapFO2k/exec",
   CHART_URL = "https://script.google.com/macros/s/AKfycbzqbIwv3mExSH1I_kq3QiTiTvD85rXgI7uEWYnkjbe3JGJsnB0/exec",
   ACTION_URL = "https://script.google.com/macros/s/AKfycbwclNzWz4lXRs_LyFGoW_maBzNcC52FonDOrsTMJ9n4ed20nk0/exec",
+  BUDGET_URL = "https://script.google.com/macros/s/AKfycbxb2XVYjTfM9CYNEvlpOHmj5QIR_-t3utN4gBMLwf1WLUNhPIs/exec",
   CAT_ICONS = {
     'Food' : 'restaurant',
     'Travel': 'directions_car',
