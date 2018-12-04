@@ -45,7 +45,8 @@ var uploadAndGetLink = function(event) {
   const dbx = new Dropbox.Dropbox({
     accessToken: DB_TOKEN
   });
-  var ok = confirm("Proceed to crop the image?");
+  // var ok = confirm("Proceed to crop the image?");
+  var ok = false;
   if (ok) {
     $(".crop").show();
     $('#form_card, #suggestions').hide();
