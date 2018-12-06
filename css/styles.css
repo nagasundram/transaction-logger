@@ -166,11 +166,11 @@ a,
   #suggestions {
     display: block;
   }
-  #budget .progress {
+  #budget-container .progress {
     left : -5% !important;
     height: 20px !important;
   }
-  #budget
+  #budget-container
     width: 100% !important;
   }
 }

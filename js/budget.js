@@ -8,17 +8,33 @@ $(function() {
       $("#map").hide();
       $("#list").hide()
       $("#budgetTgr").hide();
-      $("#budget").show();
+      $("#budget-container").show();
       $("#loading").show();
       $('#summaryArea').removeClass('show-summary');
       $('#today').removeClass('show-today');
       getAndShowBudget();
+    });
+    $('#balanceSwitch').on('click', function(e){
+      var bswitch = $(this),
+        budgetBars = $('#budget').find('.progress'),
+        planned, rightEnd;
+      $.each(budgetBars, function(index, bar) {
+        planned = $($(bar).children().children()[0]);
+        rightEnd = $($(bar).children().children()[1]);
+        rightEnd.text(parseFloat(planned.text()) - parseFloat(rightEnd.text()));
+      });
+      if(bswitch.html() == 'Spent'){
+        bswitch.html('Balance');
+      } else {
+        bswitch.html('Spent')
+      }
     });
   });
 });
 
 function getAndShowBudget() {
   var budgetDiv = $('#budget');
+  $('#budget-container').hide();
   budgetDiv.empty();
   $.ajax({
     url: "https://script.google.com/macros/s/AKfycbxb2XVYjTfM9CYNEvlpOHmj5QIR_-t3utN4gBMLwf1WLUNhPIs/exec",
@@ -48,6 +64,7 @@ function getAndShowBudget() {
           progressDiv = progressCon.append(limitRow).append(prog),
           rowDiv = $("<div></div>").attr('class', 'row').append(catDiv).append(perDiv).append(progressDiv);
         budgetDiv.append(rowDiv);
+        $('#budget-container').show();
       });
     }
   });
