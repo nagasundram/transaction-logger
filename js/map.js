@@ -18,7 +18,7 @@ $(function() {
         },
         layout: 'custom',
         display: {
-          'b': '\u2b05',
+          'b': '\u232b',
           'a': 'Ok'
         },
         customLayout: {
