@@ -36,6 +36,10 @@ textarea {
   color: #fff;
 }
 
+#amount label {
+  color: #fff  !important;
+}
+
 .input-field,
 button,
 a,
@@ -48,6 +52,12 @@ a,
   color: #fff;
   border-bottom: 1px solid #fff;
   box-shadow: 0 1px 0 0 #fff;
+}
+
+#amount{
+  color: #fff !important;
+  border-bottom: 1px solid #fff  !important;
+  box-shadow: 0 1px 0 0 #fff  !important;
 }
 
 .input-field textarea.materialize-textarea {
