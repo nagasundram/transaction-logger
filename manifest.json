@@ -13,7 +13,7 @@
       "sizes": "1125x2436"
     }
   ],
-  "start_url": "/index.html",
+  "start_url": "/transaction-logger/index.html",
   "background_color": "#000",
   "display": "standalone",
   "scope": "",

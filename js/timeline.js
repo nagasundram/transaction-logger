@@ -43,10 +43,13 @@ $(function() {
     });
     $('#applyFilter').on('click', function(e) {
       applyFilter();
-    })
+    });
     $('#resetFilter').on('click', function(e) {
       resetFilter();
-    })
+    });
+    $('#filterBtn').on('click', function(e) {
+      $('#filter-slide').sidenav('open');
+    });
   })
 })
 
@@ -54,6 +57,7 @@ function getList() {
   M.FloatingActionButton.getInstance($('#float-container')).close();
   $('#float-container').floatingActionButton();
   $('#list .timeline ul').empty();
+  $('#filterBtn').hide();
   $.ajax({
     url: CHART_URL + "?isMap=true",
     type: 'GET',
@@ -92,6 +96,7 @@ function getList() {
         }
         $('#list .timeline ul').append(li);
       })
+      $('#filterBtn').show();
       applyFilter();
       imageLinkActionListener();
       expIdActionListener();
