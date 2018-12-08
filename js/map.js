@@ -2,36 +2,11 @@ $(function() {
   $(document).ready(function() {
     // init();
     //Geolocation Detecting
-    $("#amount").click(function() {
-      $("#amount").keyboard({
-        initialized: function(e, keyboard) {
-          keyboard.reveal();
-        },
-        keyBinding: 'mousedown touchstart',
-        accepted: function() {
-          $('#amount').parent().find('label').addClass('active');
-        },
-        position: {
-          'of': null,
-          'my': 'center top',
-          'at': 'center top',
-        },
-        layout: 'custom',
-        display: {
-          'b': '\u232b',
-          'a': 'Ok'
-        },
-        customLayout: {
-          'normal': ['1 2 3', '4 5 6', '7 8 9', '. 0 {b}', '{c} {a}']
-        }
-      })
-      $('.ui-keyboard-button').addClass('waves-effect waves-white');
-    });
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(setPosition);
-    // } else {
-    //   alert("Geo location is not supported by this browser.");
-    // }
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(setPosition);
+    } else {
+      alert("Geo location is not supported by this browser.");
+    }
     $("#form_card, #suggestions").show().removeClass('hide');
 
     function init() {

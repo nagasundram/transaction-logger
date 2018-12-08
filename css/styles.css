@@ -178,38 +178,3 @@ a,
 table, th, td{
   border: 2px ridge floralwhite !important;
 }
-
-
-/*virtual keyboard*/
-
-.ui-keyboard-cancel,
-.ui-keyboard-accept{
-  min-width: 4.5em !important;
-}
-.ui-keyboard-bksp{
-  min-width: 3em !important;
-}
-.ui-keyboard-text{
-  left: auto !important;
-  top: auto !important;
-}
-.ui-keyboard {
-    background: black !important;
-    border: 1px solid teal !important;
-    width: 50% !important;
-    height: 35% !important;
-    border-radius: 9px;
-    top: 76px !important;
-}
-.ui-keyboard-preview{
-  color: white !important;
-  height: 30px !important;
-}
-.ui-keyboard-button {
-  min-width: 3em !important;
-  height: 3em !important;
-  line-height: 3em !important;
-  border-radius: 3em  !important;
-  background: black !important;
-  border: 1px solid teal !important;
-}
