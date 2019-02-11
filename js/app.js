@@ -75,16 +75,25 @@ $(function() {
     });
 
     $("#source").on("change", function() {
-      var balance = localStorage.getItem(this.value),
-        sourceHelp = $(".source-help");
+      var balance = localStorage.getItem(this.value);
+      if (balance) {
+        showSourceBal(this.value, balance);
+      } else {
+        storeBalanceLocally();
+        showSourceBal(this.value, balance);
+      }
+    });
+
+    function showSourceBal(source, balance) {
+      var sourceHelp = $(".source-help");
       sourceHelp
         .show()
         .removeClass("red-text")
         .html("Balance: ₹<strong>" + balance + "</strong>");
-      if (balance <= 300 || this.value.includes("Credit")) {
+      if (balance <= 300 || source.includes("Credit")) {
         sourceHelp.addClass("red-text");
       }
-    });
+    }
 
     function write_action(
       amt,
