@@ -92,6 +92,16 @@ a,
   display: none;
 }
 
+.source-help {
+  font-size: 10px;
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: none;
+  color: green;
+}
+
 #suggestions {
   display: none;
   margin-left: 24%;
