@@ -186,3 +186,31 @@ a,
 table, th, td{
   border: 2px ridge floralwhite !important;
 }
+.noUi-tooltip {
+    display: none;
+}
+.noUi-active .noUi-tooltip {
+    display: block;
+}
+#amount-slider {
+  height: 5px;
+  margin: 10px;
+  width: 80%;
+  margin-left: 30px;
+}
+
+.noUi-horizontal .noUi-handle {
+  width: 20px;
+  height: 20px;
+  border-radius: 99px;
+  background: #26a69a;
+  top: -8px;
+}
+.noUi-handle:before, .noUi-handle:after {
+  display: none;
+}
+#amountRangeLower,
+#amountRangeUpper {
+  padding: 5px;
+  border: 1px dotted white;
+}

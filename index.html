@@ -14,6 +14,7 @@
   <link rel="apple-touch-startup-image" href="launch1.png">
   <link rel="stylesheet" href="./css/materialize.min.css">
   <link rel="stylesheet" href="./css/jquery.flipster.min.css">
+  <link rel="stylesheet" href="./css/nouislider.css" />
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/timeline.css">
   <link rel="stylesheet" href="./css/upload.css">
@@ -49,6 +50,17 @@
             <label for="expDate">Date</label>
           </div>
         </div>
+      </div>
+    </li>
+    <li>
+      <div class="divider"></div>
+    </li>
+    <li>
+      <div class="white-text center">Amount Range</div>
+      <div id="amount-slider"></div>
+      <div class="white-text center">
+        <span id='amountRangeLower'></span>
+        <span id='amountRangeUpper'></span>
       </div>
     </li>
     <li>
@@ -373,6 +385,7 @@
   <script src="./js/budget.js"></script>
   <script src="./js/Dropbox-sdk.js"></script>
   <script src="./js/dropbox.js"></script>
+  <script src="./js/nouislider.js"></script>
   <!-- <script>
   (function() {
     const { BrowserWindow } = require('electron').remote
