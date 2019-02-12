@@ -285,6 +285,7 @@ function resetFilter() {
   $("input:checkbox:checked").each(function() {
     $(this).prop("checked", false);
   });
+  document.getElementById("amount-slider").noUiSlider.set([0, 20000]);
   applyFilter();
 }
 
