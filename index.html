@@ -12,9 +12,9 @@
   <link rel="manifest" href="./manifest.json">
   <link rel="apple-touch-icon" href="rupee-white.png">
   <link rel="apple-touch-startup-image" href="launch1.png">
-  <link rel="stylesheet" href="./css/materialize.min.css">
   <link rel="stylesheet" href="./css/jquery.flipster.min.css">
   <link rel="stylesheet" href="./css/nouislider.css" />
+  <link rel="stylesheet" href="./css/materialize.min.css">
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/timeline.css">
   <link rel="stylesheet" href="./css/upload.css">
@@ -58,9 +58,9 @@
     <li>
       <div class="white-text center">Amount Range</div>
       <div id="amount-slider"></div>
-      <div class="white-text center">
-        <span id='amountRangeLower'></span>
-        <span id='amountRangeUpper'></span>
+      <div class="white-text center row">
+        <span class="col s4 offset-s2"><input type='number' id='amountRangeLower' class="rangeInput"></span>
+        <span class="col s4"><input type='number' id='amountRangeUpper' class="rangeInput"></span>
       </div>
     </li>
     <li>
