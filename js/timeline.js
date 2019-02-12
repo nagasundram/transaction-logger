@@ -43,7 +43,7 @@ $(function() {
       noUiSlider.create(amountSlider, {
         start: [0, 20000],
         connect: true,
-        step: 10,
+        step: 1,
         orientation: "horizontal",
         range: {
           min: 0,
@@ -55,8 +55,13 @@ $(function() {
         document.getElementById('amountRangeUpper')
       ];
       amountSlider.noUiSlider.on('update', function (values, handle) {
-        skipValues[handle].innerHTML = values[handle];
+        skipValues[handle].value = values[handle];
       });
+      $(".rangeInput").on("change", function(){
+        var lower = $("#amountRangeLower").val(),
+          upper = $("#amountRangeUpper").val();
+         amountSlider.noUiSlider.set([lower, upper]);
+      })
       getList();
     });
     $("#applyFilter").on("click", function(e) {
@@ -290,8 +295,8 @@ function applyFilter() {
     categories = new Array(),
     sources = new Array();
   queryDate = moment($("#expDate").val()).format("DD-MM-YYYY");
-  var amountRangeLower = parseInt($('#amountRangeLower').text()),
-    amountRangeUpper = parseInt($('#amountRangeUpper').text());
+  var amountRangeLower = parseInt($('#amountRangeLower').val()),
+    amountRangeUpper = parseInt($('#amountRangeUpper').val());
   $("input:checkbox:checked").each(function() {
     $(this).attr("name") == "source"
       ? sources.push($(this).val())
