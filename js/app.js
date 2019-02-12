@@ -75,13 +75,18 @@ $(function() {
     });
 
     $("#source").on("change", function() {
-      var balance = localStorage.getItem(this.value);
-      if (balance) {
-        showSourceBal(this.value, balance);
+      if (this.value) {
+        var balance = localStorage.getItem(this.value);
+        if (balance) {
+          showSourceBal(this.value, balance);
+        } else {
+          storeBalanceLocally();
+          showSourceBal(this.value, balance);
+        }
       } else {
-        storeBalanceLocally();
-        showSourceBal(this.value, balance);
+        $(".source-help").hide();
       }
+
     });
 
     function showSourceBal(source, balance) {
@@ -120,6 +125,7 @@ $(function() {
         success: function(result) {
           $("#loading").hide();
           $("#transForm").trigger("reset");
+          $(".source-help").hide();
           $("#filePreview, #fileError, #uploading, #billContainer").hide();
           $("#billImgUrl").val("");
           $(".submit-btn").attr("disabled", false);
@@ -355,7 +361,6 @@ function storeBalanceLocally() {
         var obj = data.split(": "),
           key = obj[0],
           value = obj[1];
-        console.log(key, value);
         localStorage.setItem(key, value);
       });
     }
