@@ -55,8 +55,8 @@ $(function() {
           upper = $("#amountRangeUpper").val();
         amountSlider.noUiSlider.set([lower, upper]);
       });
-      $(".rangeInput").on("focus", function() {
-        $(this).select();
+      $(".rangeInput").on("focus", function(e) {
+        document.getElementById(e.target.id).setSelectionRange(0,99);
       });
       getList();
     });
