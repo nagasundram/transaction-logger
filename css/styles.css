@@ -217,4 +217,5 @@ table, th, td{
 }
 .rangeInput {
   height: 20px !important;
+  text-align: center;
 }
