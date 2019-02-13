@@ -46,7 +46,8 @@ var CATEGORIES = {
     'Shopping': '🛍',
     'Entertainment': '🎭',
     'Payments': '🗓',
-    'Misc.': '❕'
+    'Misc.': '❕',
+    'Transactions': '‼'
   },
   TIMELY_SUGGESTIONS = {
     "6": ['Milk', 'Coffee'],

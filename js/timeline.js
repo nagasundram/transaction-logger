@@ -1,16 +1,9 @@
 $(function() {
   $(document).ready(function() {
     $("#listTgr").on("click", function(e) {
-      $("#addTransaction").show();
-      $("#budgetTgr").show();
-      $("#budget-container").hide();
-      $("#expensesMap").show();
-      $("#listTgr").hide();
-      $("#form_card, #suggestions").hide();
-      $("#map").hide();
-      $("#list").show();
-      $("#loading").show();
-      $("#filter-slide").sidenav({'draggable': false});
+      $("#addTransaction, #budgetTgr, #expensesMap, #list, #loading").show();
+      $("#budget-container, #listTgr, #form_card, #suggestions, #map").hide();
+      $("#filter-slide").sidenav({ draggable: false });
       $("#expDate").datepicker();
       $("#summaryArea").removeClass("show-summary");
       $("#today").removeClass("show-today");
@@ -51,17 +44,20 @@ $(function() {
         }
       });
       var skipValues = [
-        document.getElementById('amountRangeLower'),
-        document.getElementById('amountRangeUpper')
+        document.getElementById("amountRangeLower"),
+        document.getElementById("amountRangeUpper")
       ];
-      amountSlider.noUiSlider.on('update', function (values, handle) {
+      amountSlider.noUiSlider.on("update", function(values, handle) {
         skipValues[handle].value = values[handle];
       });
-      $(".rangeInput").on("change", function(){
+      $(".rangeInput").on("change", function() {
         var lower = $("#amountRangeLower").val(),
           upper = $("#amountRangeUpper").val();
-         amountSlider.noUiSlider.set([lower, upper]);
-      })
+        amountSlider.noUiSlider.set([lower, upper]);
+      });
+      $(".rangeInput").on("focus", function() {
+        $(this).select();
+      });
       getList();
     });
     $("#applyFilter").on("click", function(e) {
@@ -296,8 +292,8 @@ function applyFilter() {
     categories = new Array(),
     sources = new Array();
   queryDate = moment($("#expDate").val()).format("DD-MM-YYYY");
-  var amountRangeLower = parseInt($('#amountRangeLower').val()),
-    amountRangeUpper = parseInt($('#amountRangeUpper').val());
+  var amountRangeLower = parseInt($("#amountRangeLower").val()),
+    amountRangeUpper = parseInt($("#amountRangeUpper").val());
   $("input:checkbox:checked").each(function() {
     $(this).attr("name") == "source"
       ? sources.push($(this).val())
@@ -307,6 +303,7 @@ function applyFilter() {
     $("input:checkbox[name='category']").each(function() {
       categories.push($(this).val());
     });
+    categories.push('Transactions')
   }
   if (sources.length == 0) {
     $("input:checkbox[name='source']").each(function() {
@@ -349,13 +346,15 @@ function applyFilter() {
         categories.includes(category) &&
         sources.includes(source) &&
         traDate.includes(queryDate) &&
-        amountInt >= amountRangeLower && amountInt <= amountRangeUpper;
+        amountInt >= amountRangeLower &&
+        amountInt <= amountRangeUpper;
     } else {
       condition =
         (subCat.includes(query) || info.includes(query)) &&
         categories.includes(category) &&
         sources.includes(source) &&
-        amountInt >= amountRangeLower && amountInt <= amountRangeUpper;
+        amountInt >= amountRangeLower &&
+        amountInt <= amountRangeUpper;
     }
     if (traDate.includes(moment().format("DD-MM-YYYY"))) {
       todayTot += amount;
