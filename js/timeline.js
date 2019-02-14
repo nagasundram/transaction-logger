@@ -56,11 +56,12 @@ $(function() {
         amountSlider.noUiSlider.set([lower, upper]);
       });
       $(".rangeInput").on("focus", function(e) {
-        document.getElementById(e.target.id).setSelectionRange(0,99);
+        document.getElementById(e.target.id).setSelectionRange(0, 99);
       });
       getList();
     });
     $("#applyFilter").on("click", function(e) {
+      $("#filterBtn").children().addClass('green-text');
       applyFilter();
     });
     $("#resetFilter").on("click", function(e) {
@@ -277,6 +278,7 @@ function timlineAnimation() {
 }
 
 function resetFilter() {
+  $("#filterBtn").children().removeClass('green-text');
   $("#searchQuery, #expDate").val("");
   $("input:checkbox:checked").each(function() {
     $(this).prop("checked", false);
@@ -303,7 +305,7 @@ function applyFilter() {
     $("input:checkbox[name='category']").each(function() {
       categories.push($(this).val());
     });
-    categories.push('Transactions')
+    categories.push("Transactions");
   }
   if (sources.length == 0) {
     $("input:checkbox[name='source']").each(function() {
