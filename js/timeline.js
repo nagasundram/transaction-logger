@@ -61,7 +61,9 @@ $(function() {
       getList();
     });
     $("#applyFilter").on("click", function(e) {
-      $("#filterBtn").children().addClass('green-text');
+      $("#filterBtn")
+        .children()
+        .addClass("green-text");
       applyFilter();
     });
     $("#resetFilter").on("click", function(e) {
@@ -278,7 +280,9 @@ function timlineAnimation() {
 }
 
 function resetFilter() {
-  $("#filterBtn").children().removeClass('green-text');
+  $("#filterBtn")
+    .children()
+    .removeClass("green-text");
   $("#searchQuery, #expDate").val("");
   $("input:checkbox:checked").each(function() {
     $(this).prop("checked", false);
@@ -320,7 +324,15 @@ function applyFilter() {
     todayTot = 0,
     credit = 0,
     debit = 0;
-
+  var filterSource = {
+    Cash: [],
+    ICICI: [],
+    HDFC: [],
+    "ICICI Credit": [],
+    "HDFC Credit": [],
+    Zeta: [],
+    Paytm: []
+  };
   for (i = 0; i < lis.length; i++) {
     var li = $(lis[i]),
       category = Object.keys(CAT_ICONS_IOS).filter(function(key) {
@@ -341,6 +353,11 @@ function applyFilter() {
         .slice(0, 10),
       amount = parseFloat(li.find(".display-amount").text()),
       amountInt = parseInt(amount);
+    if (source == "Cash" && amountInt < 999) {
+      filterSource[source].push(amountInt);
+    } else if (source != "Cash") {
+      filterSource[source].push(amountInt);
+    }
     condition = true;
     if (queryDate.length == 10) {
       condition =
@@ -378,6 +395,7 @@ function applyFilter() {
       li.hide();
     }
   }
+  localStorage.setItem("filterSource", JSON.stringify(filterSource));
   $("#summaryArea").addClass("show-summary");
   $("#total").shuffleText(total.toString(), {
     time: 30,

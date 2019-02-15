@@ -219,3 +219,9 @@ table, th, td{
   height: 20px !important;
   text-align: center;
 }
+.jqstooltip {
+  border: none !important;
+}
+#sourceSparkline {
+  margin-top: 10%;
+}

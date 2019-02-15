@@ -76,6 +76,7 @@ $(function() {
 
     $("#source").on("change", function() {
       if (this.value) {
+        showSparkline(this.value);
         var balance = localStorage.getItem(this.value);
         if (balance) {
           showSourceBal(this.value, balance);
@@ -84,11 +85,23 @@ $(function() {
           showSourceBal(this.value, balance);
         }
       } else {
+        $("#sourceSparkline").sparkline([], {});
         $(".source-help").hide();
       }
-
     });
 
+    function showSparkline(source) {
+      var sourceValues = JSON.parse(localStorage.getItem("filterSource"));
+      var sparklineValues = sourceValues[source];
+      $("#sourceSparkline").sparkline(sparklineValues, {
+        type: "line",
+        lineColor: "green",
+        width: "100%",
+        fillColor: "black",
+        tooltipPrefix: source + " ",
+        lineWidth: 1
+      });
+    }
     function showSourceBal(source, balance) {
       var sourceHelp = $(".source-help");
       sourceHelp
