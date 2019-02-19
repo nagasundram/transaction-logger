@@ -353,7 +353,7 @@ function applyFilter() {
         .slice(0, 10),
       amount = parseFloat(li.find(".display-amount").text()),
       amountInt = parseInt(amount);
-    if (source == "Cash" && amountInt < 999) {
+    if (source == "Cash" && amountInt < 999 && amount >= 15) {
       filterSource[source].push(amountInt);
     } else if (source != "Cash") {
       filterSource[source].push(amountInt);
