@@ -92,10 +92,10 @@ $(function() {
 
     function showSparkline(source) {
       var sourceValues = JSON.parse(localStorage.getItem("filterSource"));
-      var sparklineValues = sourceValues[source];
+      var sparklineValues = sourceValues[source].reverse();
       $("#sourceSparkline").sparkline(sparklineValues, {
         type: "line",
-        lineColor: "green",
+        lineColor: "teal",
         width: "100%",
         fillColor: "black",
         tooltipPrefix: source + " ",
