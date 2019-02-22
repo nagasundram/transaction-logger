@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="./css/upload.css">
   <link rel="stylesheet" href="./css/croppie.css" />
   <title>Personal Transaction Logger</title>
+  <script src="https://browser.sentry-cdn.com/4.6.3/bundle.min.js" crossorigin="anonymous"></script>
   <script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
@@ -418,6 +419,7 @@
   })();
   </script> -->
   <script>
+  Sentry.init({ dsn: 'https://0c21e1933ab94b398f81eb92ccbb6c27@sentry.io/1400011' });
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
       navigator.serviceWorker.register('./sw.js').then(function(registration) {
