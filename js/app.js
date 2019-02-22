@@ -198,6 +198,7 @@ $(function() {
             var obj = data.split(": "),
               key = obj[0],
               value = obj[1];
+              localStorage.setItem(key, value);
             switch (key) {
               case "Cash":
                 htmlResult +=
