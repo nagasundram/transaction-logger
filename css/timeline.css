@@ -129,7 +129,8 @@ hr {
   pointer-events: none;
 }
 
-#summaryArea {
+#summaryArea,
+#monthTitle {
   background: black;
   position: fixed;
   z-index: 1;
@@ -139,6 +140,11 @@ hr {
   opacity: 0;
   display: none;
   border: 1px dashed white;
+}
+#monthTitle {
+  opacity: 0.9;
+  border: none;
+  top: 5%
 }
 .show-summary {
   opacity: 1 !important;

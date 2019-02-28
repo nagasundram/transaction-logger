@@ -81,10 +81,11 @@ function getList() {
   $("#list .timeline ul").empty();
   $("#filterBtn").hide();
   $.ajax({
-    url: CHART_URL + "?isMap=true",
+    url: CHART_URL + "?isMap=true&sheet=" + moment().format("MMMM YYYY"),
     type: "GET",
     success: function(result) {
       $("#loading").hide();
+      $("#monthTitle").show().html(moment().format("MMMM YYYY"));
       var expenses = result.expenses;
       expenses.reverse().forEach(function(expense, index) {
         var date = moment(expense[0]).format("DD-MM-YYYY HH:mm"),
