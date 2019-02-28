@@ -144,7 +144,12 @@ hr {
 #monthTitle {
   opacity: 0.9;
   border: none;
-  top: 5%
+  height: 60px;
+}
+.mn-yr{
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: x-large;
 }
 .show-summary {
   opacity: 1 !important;
@@ -172,7 +177,7 @@ hr {
   left: 70%;
   transform: rotate(90deg) skew(20deg) !important;
   -webkit-transform: rotate(90deg) skew(20deg) !important;
-  transition: all .5s ease-in-out;
+  transition: all 0s ease-in-out;
 }
 
 /* EFFECTS
@@ -234,7 +239,32 @@ hr {
     width: 95%;
   }
 
+#monthsModal {
+  display: block;
+  opacity: 1;
+  z-index: 100;
+  width: 80%;
+  height: 80% !important;
+  max-height: 100% !important;
+  top: 10%;
+  background: black;
+  color: white;
+  border: 1px teal solid;
+  font-size: large;
+}
 
+.past-months {
+  text-align: center;
+  padding: 10px;
+}
+.mn-yr::after{
+  content: " ▼"
+}
+#monthsModal a{
+  color: white;
+  position: fixed;
+  left: 80%;
+}
 /* GENERAL MEDIA QUERIES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
