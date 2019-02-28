@@ -60,32 +60,76 @@ $(function() {
       });
       getList();
     });
+
     $("#applyFilter").on("click", function(e) {
       $("#filterBtn")
         .children()
         .addClass("green-text");
       applyFilter();
     });
+
     $("#resetFilter").on("click", function(e) {
       resetFilter();
     });
+
     $("#filterBtn").on("click", function(e) {
       $("#filter-slide").sidenav("open");
+    });
+
+    $("#monthTitle").on("click", function(e) {
+      var monthsModal = $("<div>")
+          .addClass("modal open")
+          .attr("id", "monthsModal"),
+        modalContent = $("<div>").addClass("modal-content"),
+        monthCount = 0,
+        maxPastMonth = "May 2018",
+        mnthModalClose = $("<a>").attr("id", "mnthModalClose").html('&times;');
+      modalContent.append(mnthModalClose);
+      month = moment().format("MMMM YYYY");
+      while (month != maxPastMonth) {
+        var pastMonth = $("<div>")
+          .append(month)
+          .addClass("past-months");
+        if ($(".mn-yr")[0].innerText == month) {
+          pastMonth.addClass("teal-text");
+        }
+        modalContent.append(pastMonth);
+        monthCount++;
+        month = moment()
+          .subtract(monthCount, "months")
+          .format("MMMM YYYY");
+      }
+      monthsModal.append(modalContent);
+      $("#list").append(monthsModal);
+      monthsActionListener();
     });
   });
 });
 
-function getList() {
+function getList(
+  monthSheetName = moment().format("MMMM YYYY"),
+  closeMonthModal = false
+) {
   M.FloatingActionButton.getInstance($("#float-container")).close();
   $("#float-container").floatingActionButton();
   $("#list .timeline ul").empty();
   $("#filterBtn").hide();
   $.ajax({
-    url: CHART_URL + "?isMap=true&sheet=" + moment().format("MMMM YYYY"),
+    url: CHART_URL + "?isMap=true&sheet=" + monthSheetName,
     type: "GET",
     success: function(result) {
       $("#loading").hide();
-      $("#monthTitle").show().html(moment().format("MMMM YYYY"));
+      var monthTitle = $("#monthTitle"),
+        mnYr = $("<div></div>")
+          .addClass("mn-yr")
+          .html(monthSheetName);
+      monthTitle
+        .html("")
+        .show()
+        .append(mnYr);
+      if (closeMonthModal) {
+        $("#monthsModal").remove();
+      }
       var expenses = result.expenses;
       expenses.reverse().forEach(function(expense, index) {
         var date = moment(expense[0]).format("DD-MM-YYYY HH:mm"),
@@ -228,6 +272,22 @@ function expIdActionListener() {
   });
 }
 
+function monthsActionListener() {
+  var pastMonths = $(".past-months");
+  pastMonths.each(function() {
+    pastMonth = $(this);
+    pastMonth.on("click", function(event) {
+      var monthSheetName = event.target.innerText;
+      $(pastMonths.filter(".teal-text")[0]).removeClass("teal-text");
+      $(event.target).addClass("teal-text");
+      getList(monthSheetName, true);
+    });
+  });
+  $("#mnthModalClose").on("click", function(){
+    $("#monthsModal").remove();
+  })
+}
+
 function deleteExp(id) {
   var ok = confirm("Want to remove? \n" + id);
   if (ok) {
@@ -297,7 +357,8 @@ function applyFilter() {
       .val()
       .toUpperCase(),
     categories = new Array(),
-    sources = new Array();
+    sources = new Array(),
+    isCurrentMonth = $(".mn-yr")[0].innerText == moment().format("MMMM YYYY");
   queryDate = moment($("#expDate").val()).format("DD-MM-YYYY");
   var amountRangeLower = parseInt($("#amountRangeLower").val()),
     amountRangeUpper = parseInt($("#amountRangeUpper").val());
@@ -356,7 +417,7 @@ function applyFilter() {
       amountInt = parseInt(amount);
     if (source == "Cash" && amountInt < 999 && amount >= 15) {
       filterSource[source].push(amountInt);
-    } else if (source != "Cash") {
+    } else if (source != "Cash" && filterSource[source]) {
       filterSource[source].push(amountInt);
     }
     condition = true;
@@ -396,7 +457,12 @@ function applyFilter() {
       li.hide();
     }
   }
-  localStorage.setItem("filterSource", JSON.stringify(filterSource));
+  if (isCurrentMonth) {
+    localStorage.setItem("filterSource", JSON.stringify(filterSource));
+    $("#today, #filterDatePicker").attr("style", "display: block !important");
+  } else {
+    $("#today, #filterDatePicker").attr("style", "display: none !important");
+  }
   $("#summaryArea").addClass("show-summary");
   $("#total").shuffleText(total.toString(), {
     time: 30,
