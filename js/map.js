@@ -47,7 +47,7 @@ function getMap() {
   M.FloatingActionButton.getInstance($('#float-container')).close();
   $('#float-container').floatingActionButton();
   $.ajax({
-    url: CHART_URL + "?isMap=true",
+    url: CHART_URL + "?isMap=true&sheet=" + moment().format("MMMM YYYY"),
     type: 'GET',
     success: function(result) {
       $("#loading").hide();

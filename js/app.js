@@ -289,7 +289,7 @@ function getChartData(key) {
   $("#loading").show();
   key = key.replace("|", " ");
   $.ajax({
-    url: CHART_URL + "?cat=" + key,
+    url: CHART_URL + "?cat=" + key + "&sheet=" + moment().format("MMMM YYYY"),
     type: "GET",
     success: function(result) {
       google.charts.setOnLoadCallback(drawChart(result, key));
