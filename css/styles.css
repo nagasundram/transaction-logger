@@ -225,3 +225,10 @@ table, th, td{
 #sourceSparkline {
   margin-top: 10%;
 }
+
+.pie {
+  align-items: center;
+  vertical-align: baseline !important;
+  left: 10%;
+  padding: 3px
+}
