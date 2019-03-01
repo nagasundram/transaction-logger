@@ -33,16 +33,18 @@ $(function() {
         data: dataHash
       });
       var amountSlider = document.getElementById("amount-slider");
-      noUiSlider.create(amountSlider, {
-        start: [0, 20000],
-        connect: true,
-        step: 1,
-        orientation: "horizontal",
-        range: {
-          min: 0,
-          max: 20000
-        }
-      });
+      if (!amountSlider.noUiSlider) {
+        noUiSlider.create(amountSlider, {
+          start: [0, 20000],
+          connect: true,
+          step: 1,
+          orientation: "horizontal",
+          range: {
+            min: 0,
+            max: 20000
+          }
+        });
+      }
       var skipValues = [
         document.getElementById("amountRangeLower"),
         document.getElementById("amountRangeUpper")
@@ -83,7 +85,9 @@ $(function() {
         modalContent = $("<div>").addClass("modal-content"),
         monthCount = 0,
         maxPastMonth = "May 2018",
-        mnthModalClose = $("<a>").attr("id", "mnthModalClose").html('&times;');
+        mnthModalClose = $("<a>")
+          .attr("id", "mnthModalClose")
+          .html("&times;");
       modalContent.append(mnthModalClose);
       month = moment().format("MMMM YYYY");
       while (month != maxPastMonth) {
@@ -211,7 +215,7 @@ function getList(
         $("#list .timeline ul").append(li);
       });
       $("#filterBtn").show();
-      applyFilter();
+      resetFilter();
       imageLinkActionListener();
       expIdActionListener();
       timlineAnimation();
@@ -283,9 +287,9 @@ function monthsActionListener() {
       getList(monthSheetName, true);
     });
   });
-  $("#mnthModalClose").on("click", function(){
+  $("#mnthModalClose").on("click", function() {
     $("#monthsModal").remove();
-  })
+  });
 }
 
 function deleteExp(id) {
