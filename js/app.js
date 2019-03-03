@@ -120,7 +120,9 @@ $(function() {
       source,
       comments,
       location,
-      billImgUrl
+      billImgUrl,
+      formType,
+      rowId
     ) {
       var data = [
         subCat,
@@ -129,7 +131,9 @@ $(function() {
         cat,
         comments,
         location,
-        billImgUrl
+        billImgUrl,
+        formType,
+        rowId
       ].join("|||");
       $("#loading").show();
       $.ajax({
@@ -155,6 +159,8 @@ $(function() {
     }
 
     $("#transForm").on("submit", function(e) {
+      var formType = $("#transForm").data().formType,
+        rowId = $("#transForm").data().rowId;
       $(".submit-btn").attr("disabled", true);
       var selectIds = ["#source", "#category"],
         errFlag = 0;
@@ -184,7 +190,17 @@ $(function() {
       if (cat == "Misc.") {
         subCat = $("#miscSubCategory").val();
       }
-      write_action(amt, cat, subCat, source, comments, location, billImgUrl);
+      write_action(
+        amt,
+        cat,
+        subCat,
+        source,
+        comments,
+        location,
+        billImgUrl,
+        formType,
+        rowId
+      );
     });
 
     $("#sb").on("click", function() {
@@ -198,7 +214,7 @@ $(function() {
             var obj = data.split(": "),
               key = obj[0],
               value = obj[1];
-              localStorage.setItem(key, value);
+            localStorage.setItem(key, value);
             switch (key) {
               case "Cash":
                 htmlResult +=

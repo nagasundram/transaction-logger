@@ -270,6 +270,12 @@ function expIdActionListener() {
           $("#actionModal")
             .find(".modal-delete")
             .attr("onclick", "deleteExp(" + id + ")");
+          $("#actionModal")
+            .find(".modal-edit")
+            .attr(
+              "onclick",
+              "editExp(" + id + "," + JSON.stringify(result) + ")"
+            );
         }
       });
     });
@@ -305,6 +311,42 @@ function deleteExp(id) {
         $("#listTgr").trigger("click");
       }
     });
+  }
+}
+
+function editExp(id, values) {
+  var ok = confirm("Want to update? \n" + id + "\n" + values.split(","));
+  if (ok) {
+    $("#actionModal").modal("close");
+    $("#addTransaction, #budget-container, #map, #list, #list").hide();
+    $("#expensesMap, #budgetTgr, #form_card, #suggestions, #listTgr").show();
+    $("#form_card, #suggestions").removeClass("hide");
+    var formData = values.split(",");
+    $("#amount")
+      .val(formData[2])
+      .trigger("focus");
+    $('#source option[value="' + formData[3] + '"]').prop("selected", true);
+    $("#source")
+      .formSelect("destroy")
+      .formSelect()
+      .change();
+    $('#category option[value="' + formData[4] + '"]').prop("selected", true);
+    $("#category")
+      .formSelect("destroy")
+      .formSelect()
+      .change();
+    $('#subCategory option[value="' + formData[1] + '"]').prop(
+      "selected",
+      true
+    );
+    $("#subCategory")
+      .formSelect("destroy")
+      .formSelect()
+      .change();
+    $("#comments")
+      .val(formData[5])
+      .trigger("focus");
+    $("#transForm").data("form-type", "update").data("row-id", id);
   }
 }
 
