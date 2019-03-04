@@ -16,7 +16,7 @@ $(function() {
     $("#float-container").floatingActionButton();
     $(".modal").modal();
     $("#addTransaction").hide();
-    $("#list").hide();
+    $("#list, #list-loading").fadeOut();
     $("#budget-container").hide();
     var elems = document.querySelectorAll(".tap-target");
     var instances = M.TapTarget.init(elems, {});
