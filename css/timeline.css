@@ -157,7 +157,7 @@ hr {
   transform: rotate(90deg) skew(20deg);
   top: 20%;
   left: 45%;
-  transition: all .5s ease-in-out;
+  transition: all 0s ease-in-out;
 }
 #today {
   background: black;
