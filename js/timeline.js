@@ -118,6 +118,7 @@ function getList(
   $("#float-container").floatingActionButton();
   $("#list .timeline ul").empty();
   $("#filterBtn").hide();
+  $("#loading").show();
   $.ajax({
     url: CHART_URL + "?isMap=true&sheet=" + monthSheetName,
     type: "GET",

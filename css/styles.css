@@ -169,6 +169,9 @@ a,
     width: 50% !important;
     left: 25% !important;
   }
+  .svg-progress {
+    text-align: center;
+  }
   .fixed-action-btn.active ul {
     bottom: 40px !important;
   }

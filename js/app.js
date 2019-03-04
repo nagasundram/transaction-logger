@@ -154,6 +154,11 @@ $(function() {
           M.toast({ html: "Transaction Logged", classes: "blue-grey" });
           $("#listTgr").trigger("click");
           storeBalanceLocally();
+          if (formType == "update" && rowId) {
+            $("#transForm")
+              .data("form-type", "")
+              .data("row-id", "");
+          }
         }
       });
     }
