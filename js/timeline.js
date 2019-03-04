@@ -118,12 +118,12 @@ function getList(
   $("#float-container").floatingActionButton();
   $("#list .timeline ul").empty();
   $("#filterBtn").hide();
-  $("#loading, #list-loading").fadeIn();
+  $("#loading").show();
   $.ajax({
     url: CHART_URL + "?isMap=true&sheet=" + monthSheetName,
     type: "GET",
     success: function(result) {
-      $("#loading, #list-loading").fadeOut();
+      $("#loading").hide();
       var monthTitle = $("#monthTitle"),
         mnYr = $("<div></div>")
           .addClass("mn-yr")
@@ -291,7 +291,6 @@ function monthsActionListener() {
       var monthSheetName = event.target.innerText;
       $(pastMonths.filter(".teal-text")[0]).removeClass("teal-text");
       $(event.target).addClass("teal-text");
-      $("#monthsModal").remove();
       getList(monthSheetName, true);
     });
   });
