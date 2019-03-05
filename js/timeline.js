@@ -159,12 +159,13 @@ function getList(
     }
     $("#list .timeline ul").append(li);
   }
+  $("#list .timeline ul").addClass('flash')
   $.ajax({
     url: CHART_URL + "?isMap=true&sheet=" + monthSheetName,
     type: "GET",
     success: function(result) {
       $("#loading").hide();
-      $("#list .timeline ul").empty();
+      $("#list .timeline ul").empty().removeClass('flash');
       var monthTitle = $("#monthTitle"),
         mnYr = $("<div></div>")
           .addClass("mn-yr")
