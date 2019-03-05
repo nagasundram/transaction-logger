@@ -119,11 +119,52 @@ function getList(
   $("#list .timeline ul").empty();
   $("#filterBtn").hide();
   $("#loading").show();
+  for (var i = 0; i < 5; i++) {
+    var date = "---------- --:--",
+      sourceColor = "green-text";
+    var time = $("<time></time>").text(date),
+      source = $("<span></span>")
+        .text("----")
+        .attr("class", "source right " + sourceColor),
+      firstp = $("<p></p>")
+        .append(time)
+        .append(source),
+      subCat = $("<span></span>")
+        .text("----------")
+        .attr("class", "sub-cat"),
+      amount = $("<span></span>")
+        .append("<strong>₹ </strong>")
+        .append('<strong class="display-amount">' + "---" + "</strong>")
+        .attr("class", "right"),
+      secodp = $("<p></p>")
+        .append(subCat)
+        .append(amount),
+      info = $("<span></span>")
+        .text("-------- ---")
+        .attr("class", "info-txt"),
+      thirdp = $("<p></p>")
+        .append(info)
+        .attr("style", "min-height: 20px;"),
+      lidiv = $("<div></div>")
+        .append(firstp)
+        .append(secodp)
+        .append("<hr>")
+        .append(thirdp);
+    var li;
+    if (i <= 5) {
+      li = $("<li></li>")
+        .html(lidiv)
+        .attr("data-after", "")
+        .attr("class", "in-view ");
+    }
+    $("#list .timeline ul").append(li);
+  }
   $.ajax({
     url: CHART_URL + "?isMap=true&sheet=" + monthSheetName,
     type: "GET",
     success: function(result) {
       $("#loading").hide();
+      $("#list .timeline ul").empty();
       var monthTitle = $("#monthTitle"),
         mnYr = $("<div></div>")
           .addClass("mn-yr")
@@ -202,7 +243,7 @@ function getList(
             .append("<hr>")
             .append(thirdp);
         var li;
-        if (index <= 3) {
+        if (index <= 5) {
           li = $("<li></li>")
             .html(lidiv)
             .attr("data-after", CAT_ICONS_IOS[expense[4]])
@@ -292,6 +333,7 @@ function monthsActionListener() {
       $(pastMonths.filter(".teal-text")[0]).removeClass("teal-text");
       $(event.target).addClass("teal-text");
       getList(monthSheetName, true);
+      $("#monthsModal").remove();
     });
   });
   $("#mnthModalClose").on("click", function() {
@@ -347,7 +389,9 @@ function editExp(id, values) {
     $("#comments")
       .val(formData[5])
       .trigger("focus");
-    $("#transForm").data("form-type", "update").data("row-id", id);
+    $("#transForm")
+      .data("form-type", "update")
+      .data("row-id", id);
   }
 }
 

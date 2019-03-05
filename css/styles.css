@@ -165,12 +165,17 @@ a,
   #expensesMap, #addTransaction, #float-container {
     margin-left: 5% !important;
   }
+  #form_card {
+    top: 15px;
+  }
   .progress {
     width: 50% !important;
     left: 25% !important;
   }
   .svg-progress {
-    text-align: center;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
   }
   .fixed-action-btn.active ul {
     bottom: 40px !important;
