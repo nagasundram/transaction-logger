@@ -43,8 +43,56 @@ $(function() {
 
 function getAndShowBudget() {
   var budgetDiv = $("#budget");
-  $("#budget-container").hide();
   budgetDiv.empty();
+  for (var i = 0; i < 13; i++) {
+    var used = 0,
+      percentage = 0,
+      cat = "---------",
+      intPer = parseInt(Math.random(100) * 100),
+      color = 'darkgray';
+    var catDiv = $("<div></div>")
+        .text(cat + ": ")
+        .attr("class", "white-text col s3")
+        .attr("style", "margin-top: 8px"),
+      perDiv = $("<div></div>")
+        .text("--%")
+        .attr("class", "white-text col s3")
+        .attr("style", "margin-top: 8px"),
+      prog = $("<div></div>")
+        .attr("class", "determinate " + color)
+        .attr("style", "width: " + intPer + "%"),
+      limitDiv = $("<div></div>")
+        .attr("class", "col s6")
+        .attr("style", "text-align: left")
+      usedDiv = $("<div></div>")
+        .attr("class", "col s6")
+        .attr("style", "text-align: right")
+      limitRow = $("<div></div>")
+        .attr("class", "row")
+        .attr("style", "position: relative; z-index: 9;")
+        .append(limitDiv)
+        .append(usedDiv),
+      progressCon = $("<div></div>").attr("class", "progress gray col s6"),
+      progressDiv = progressCon.append(limitRow).append(prog),
+      pieDiv = $("<span>")
+        .attr("id", "pie" + i)
+        .addClass("pie"),
+      perPieDiv = perDiv.prepend(pieDiv),
+      rowDiv = $("<div></div>")
+        .attr("class", "row")
+        .append(catDiv)
+        .append(perPieDiv)
+        .append(progressDiv);
+    budgetDiv.append(rowDiv);
+    $("#budget-container").show();
+    var randomPie = parseInt(Math.random(100) * 100);
+    $("#pie" + i).sparkline([randomPie, 100 - randomPie], {
+      type: "pie",
+      sliceColors: [color, "#000"],
+      offset: -90
+    });
+  }
+  budgetDiv.addClass('flash');
   $.ajax({
     url:
       "https://script.google.com/macros/s/AKfycbxb2XVYjTfM9CYNEvlpOHmj5QIR_-t3utN4gBMLwf1WLUNhPIs/exec",
@@ -52,7 +100,11 @@ function getAndShowBudget() {
     success: function(result) {
       var budgets = result.budgets;
       $("#loading").hide();
+      $("#budget-container").hide();
+      budgetDiv.removeClass('flash');
+      budgetDiv.empty();
       budgets.forEach(function(budget, index) {
+        console.log(budget[0])
         var used = budget[1] - budget[2],
           percentage = ((used / budget[1]) * 100).toFixed(2),
           cat = budget[0],
