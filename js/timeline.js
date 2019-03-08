@@ -1,8 +1,8 @@
 $(function() {
   $(document).ready(function() {
     $("#listTgr").on("click", function(e) {
-      $("#addTransaction, #budgetTgr, #expensesMap, #list, #loading").show();
-      $("#budget-container, #listTgr, #form_card, #suggestions, #map").hide();
+      $("#addTransaction, #budgetTgr, #expensesMap, #list, #loading, #incomeTgr").show();
+      $("#budget-container, #listTgr, #form_card, #suggestions, #map, #incomeContainer").hide();
       $("#filter-slide").sidenav({ draggable: false });
       $("#expDate").datepicker();
       $("#summaryArea").removeClass("show-summary");

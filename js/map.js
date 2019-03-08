@@ -22,16 +22,17 @@ $(function() {
       $("#form_card, #suggestions").show().removeClass('hide');
       $("#map").hide();
       $('#list').hide();
-      $('#listTgr').show();
+      $('#listTgr, #incomeTgr').show();
+      $('#incomeContainer').hide();
       // $('#filter-slide').sidenav('destroy');
       M.FloatingActionButton.getInstance($('#float-container')).close();
     })
 
     $('#expensesMap').on('click', function(e) {
       $("#loading").show();
-      $('#listTgr').show();
+      $('#listTgr, #incomeTgr').show();
       // $('#filter-slide').sidenav('destroy');
-      $('#list').hide();
+      $('#list, #incomeContainer').hide();
       getMap();
     })
 
