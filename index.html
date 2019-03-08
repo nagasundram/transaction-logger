@@ -237,6 +237,49 @@
     <div id="map-canvas"></div>
   </div>
   <!-- Map Area -->
+  <!-- Income form START-->
+  <div class="card z-depth-5" id="incomeContainer">
+    <form class="row" id="incomeForm">
+      <div class="col s12">
+        <div class="card-content white-text">
+          <span class="card-title">
+            Add Income
+          </span>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="iAmount" type="text" pattern="\d*" required autocomplete="off">
+              <label for="iAmount">Amount</label>
+            </div>
+            <div class="input-field col s6">
+              <select id="iSource" name="source">
+                <option value="">Select</option>
+                <option data-icon="images/rupee-white.png" value="D2">Cash</option>
+                <option data-icon="images/icici.png" value="B2">ICICI</option>
+                <option data-icon="images/hdfc.png" value="C2">HDFC</option>
+                <option data-icon="images/zeta.png" value="E2">Zeta</option>
+                <option data-icon="images/paytm.jpg" value="F2">Paytm</option>
+              </select>
+              <label for="iSource">Source</label>
+              <div class="select-error red-text">Please select Source</div>
+              <div class="source-help">Balance</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" id="iComments" />
+              <label for="iComments">Comments</label>
+            </div>
+          </div>
+          <div class="row center">
+            <button class="btn-floating btn-large waves-effect waves-green green darken-3 i-submit-btn" type="submit">
+              <i class="material-icons right">add</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- Income form END-->
   <!-- Transaction Form -->
   <div class="card z-depth-5 hide" id="form_card">
     <form class="row" id="transForm">
@@ -374,6 +417,7 @@
       <li><a class="btn-floating yellow darken-1" id="expensesMap"><i class="material-icons">map</i></a></li>
       <li><a class="btn-floating blue" id="listTgr"><i class="material-icons">list</i></a></li>
       <li><a class="btn-floating orange" id="budgetTgr"><i class="material-icons">format_align_left</i></a></li>
+      <li><a class="btn-floating light-green" id="incomeTgr"><i class="material-icons">input</i></a></li>
     </ul>
   </div>
   <!-- Floating Buttons -->
@@ -399,6 +443,7 @@
   <script src="./js/map_style.js"></script>
   <script src="./js/map.js"></script>
   <script src="./js/app.js"></script>
+  <script src="./js/income.js"></script>
   <script src="./js/extras.js"></script>
   <script src="./js/timeline.js"></script>
   <script src="./js/budget.js"></script>

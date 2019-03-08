@@ -3,8 +3,8 @@ $(function() {
     $("#budgetTgr").on("click", function(e) {
       $("#addTransaction").show();
       $("#expensesMap").show();
-      $("#listTgr").show();
-      $("#form_card, #suggestions").hide();
+      $("#listTgr, #incomeTgr").show();
+      $("#form_card, #suggestions, #incomeContainer").hide();
       $("#map").hide();
       $("#list").hide();
       $("#budgetTgr").hide();
