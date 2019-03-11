@@ -59,7 +59,6 @@ $(function() {
             .change();
           $("#comments")
             .val(formData.comments)
-            .trigger("focus");
         }
       };
     };
