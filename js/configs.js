@@ -96,7 +96,8 @@ var CATEGORIES = {
     'ToOffice': ['Cash', 'Travel', 'Bus', '🚍', 'green', '🏡-🏢'],
     'ToHome': ['Cash', 'Travel', 'Bus', '🚍', 'green', '🏢-🏡'],
     'Bus': ['Cash', 'Travel', 'Bus', '🚍', 'green', ''],
-    'Peanuts': ['Cash', 'Food', 'Snacks', '🥜', 'brown lighten-2', '🥜']
+    'Peanuts': ['Cash', 'Food', 'Snacks', '🥜', 'brown lighten-2', '🥜'],
+    'Reset': ['', '', '', '🚫', 'white', '']
   },
   DB_TOKEN = 'jasF7eX3o5gAAAAAAAABI30WC38bFMydEOoWgDZnTnX-2uPZt5c3qwmPoKqXYNGy';
   RUBY_API_ENDPOINT = 'https://expenses-sheet-api.herokuapp.com/expenses'
