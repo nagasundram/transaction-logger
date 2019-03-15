@@ -1,7 +1,7 @@
 var CATEGORIES = {
     "Food": { "Tea/Coffee": "Tea/Coffee", "Street Food": "Street Food", "Restaurants": "Restaurants", "Snacks": "Snacks" },
     "Shopping": { "Groceries": "Groceries", "Cosmetics": "Cosmetics", "Medicine": "Medicine", "Dress": "Dress", "Accessories": "Accessories", "Household": "Household" },
-    "Travel": { "Bus": "Bus", "Auto": "Auto", "Cab": "Cab", "Train": "Train", "Fuel": "Fuel", "Toll": "Toll", "Service": "Service" },
+    "Travel": { "Bus": "Bus", "Auto": "Auto", "Cab": "Cab", "Train": "Train", "Fuel": "Fuel", "Toll": "Toll", "Parking": "Parking", "Service": "Service" },
     "Entertainment": {"Movie": "Movie", "Tour": "Tour"},
     "Payments": {
       "Rent": "Rent",
