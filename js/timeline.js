@@ -202,10 +202,10 @@ function getList(
           sourceColor = expense[3].includes("Credit")
             ? "red-text"
             : "green-text";
-        if (
-          moment(expense[0]).format("DD-MM-YYYY") ==
-          moment().format("DD-MM-YYYY")
-        ) {
+        // if (
+        //   moment(expense[0]).format("DD-MM-YYYY") ==
+        //   moment().format("DD-MM-YYYY") )
+        if(true) {
           id = $("<a></a>")
             .append("<i class='tiny material-icons timline-id'>info</i>")
             .attr("class", "expId")
@@ -297,7 +297,8 @@ function expIdActionListener() {
       $.ajax({
         url: ACTION_URL + "?id=" + id + "&actionName=SHOW",
         type: "GET",
-        success: function(result) {
+        success: function(data) {
+          var result = data.row_data[0].join(',');
           $("#actionModal").modal();
           var infoDiv = $("<div></div>")
             .attr("id", "expense")

@@ -66,7 +66,7 @@ var uploadAndGetLink = function(event) {
         $('.submit-btn').attr('disabled', true);
         var file_name = $('#amount').val() + '-' + moment().format("DD-MM-YYYY_HH-mm") + '.' + 'png',
           imageData = _base64ToArrayBuffer(resp);
-        res = dbx.filesUpload({ path: '/Bills/' + file_name, contents: imageData })
+        res = dbx.filesUpload({ path: '/Bills/' + moment().format("DD-MM-YYYY") + "/" + file_name, contents: imageData })
           .then(function(response) {
             dbx.sharingCreateSharedLinkWithSettings({ path: response.path_display })
               .then(function(response) {
@@ -123,7 +123,7 @@ var uploadAndGetLink = function(event) {
     $('#filePreview').hide();
     $('#uploading').show();
     $('.submit-btn').attr('disabled', true);
-    res = dbx.filesUpload({ path: '/Bills/' + file_name, contents: file })
+    res = dbx.filesUpload({ path: '/Bills/' + moment().format("DD-MM-YYYY") + "/" + file_name, contents: file })
       .then(function(response) {
         dbx.sharingCreateSharedLinkWithSettings({ path: response.path_display })
           .then(function(response) {
